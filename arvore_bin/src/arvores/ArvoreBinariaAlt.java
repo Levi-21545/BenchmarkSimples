@@ -1,4 +1,4 @@
-package mypackage;
+package arvores;
 
 /* Criado por: profa. Divani Barbosa Gavinier
    Curriculo Lattes: http://lattes.cnpq.br/8503400830635447
@@ -7,18 +7,7 @@ package mypackage;
 import java.io.*;
 import java.util.*;
 
-class NoArvBin {
-
-    public double item;
-    public NoArvBin dir;
-    public NoArvBin esq;
-
-    public double getItem() {
-        return this.item;
-    }
-}
-
-class ArvoreBinariaAlt {
+public class ArvoreBinariaAlt {
 
     private NoArvBin raiz; // raiz
 
@@ -279,6 +268,17 @@ class ArvoreBinariaAlt {
             atual = atual.dir;
         }
         return anterior;
+    }
+
+    public class NoArvBin {
+
+        public double item;
+        public NoArvBin dir;
+        public NoArvBin esq;
+
+        public double getItem() {
+            return this.item;
+        }
     }
 
 }

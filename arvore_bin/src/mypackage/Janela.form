@@ -132,9 +132,9 @@
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="botaoCalc" min="-2" pref="86" max="-2" attributes="0"/>
+                              <Component id="botaoIniciar" min="-2" pref="86" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jProgressBar1" max="32767" attributes="0"/>
+                              <Component id="barraProgresso" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -222,8 +222,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="botaoCalc" max="32767" attributes="0"/>
-                      <Component id="jProgressBar1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="botaoIniciar" max="32767" attributes="0"/>
+                      <Component id="barraProgresso" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
@@ -251,13 +251,13 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="botaoCalc">
+        <Component class="javax.swing.JButton" name="botaoIniciar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Iniciar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCalcActionPerformed"/>
-            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="botaoCalcPropertyChange"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoIniciarActionPerformed"/>
+            <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="botaoIniciarPropertyChange"/>
           </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_ordenar">
@@ -274,24 +274,36 @@
             <Property name="text" type="java.lang.String" value="Bubble Sort"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_bubbleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_selection">
           <Properties>
             <Property name="text" type="java.lang.String" value="Selection Sort"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_selectionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_insertion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Insertion Sort"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_insertionActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_quick">
           <Properties>
             <Property name="text" type="java.lang.String" value="Quick Sort"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_quickActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_criaArvores">
           <Properties>
@@ -307,6 +319,9 @@
             <Property name="text" type="java.lang.String" value="Bin&#xe1;ria (Bianchi)"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_criaBinActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_criaAVL">
           <Properties>
@@ -322,12 +337,18 @@
             <Property name="text" type="java.lang.String" value="Balanceada AVL (Autor Desconhecido)"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_criaAVLAltActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_criaBinAlt">
           <Properties>
             <Property name="text" type="java.lang.String" value="Bin&#xe1;ria (Autor Desconhecido)"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="check_criaBinAltActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="label_numElem">
           <Properties>
@@ -473,7 +494,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JProgressBar" name="jProgressBar1">
+        <Component class="javax.swing.JProgressBar" name="barraProgresso">
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>

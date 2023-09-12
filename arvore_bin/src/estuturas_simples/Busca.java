@@ -1,4 +1,11 @@
-package mypackage;
+package estuturas_simples;
+
+import arvores.ArvoreAvl;
+import arvores.ArvoreAvlAlt;
+import arvores.ArvoreBinaria;
+import arvores.ArvoreBinariaAlt;
+import arvores.ArvoreBinariaAlt.NoArvBin;
+import arvores.ArvoreAvl.NoAvl;
 
 public final class Busca {
 
@@ -95,7 +102,7 @@ public final class Busca {
         this.tempoExecBal = tempoSort;
     }
 
-    public boolean buscaRecArvBal(No no, double numero) {
+    public boolean buscaRecArvBal(NoAvl no, double numero) {
         if (no == null) {
             System.out.println("Nao achou raiz null avl");
             return false; // Valor não encontrado
@@ -129,7 +136,7 @@ public final class Busca {
         this.tempoExecBalRuim = tempoSort;
     }
 
-    public boolean buscaRecArvBalRuim(ArvoreAvlAlt.No arvore, double numero) {
+    public boolean buscaRecArvBalRuim(ArvoreAvlAlt.NoAvlAlt arvore, double numero) {
         if (arvore == null) {
             System.out.println("Nao achou raiz null");
             return false; // Valor não encontrado
@@ -192,7 +199,7 @@ public final class Busca {
             }
         } // fim laço while
 
-            System.out.println(Cores.GREEN + "Achou Bin Ruim" + Cores.RESET);
+        System.out.println(Cores.GREEN + "Achou Bin Ruim" + Cores.RESET);
         return true; // terminou o laço while e ch
     }
 

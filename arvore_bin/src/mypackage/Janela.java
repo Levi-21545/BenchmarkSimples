@@ -4,6 +4,14 @@
  */
 package mypackage;
 
+import arvores.ArvoreAvl;
+import arvores.ArvoreAvlAlt;
+import arvores.ArvoreBinaria;
+import arvores.ArvoreBinariaAlt;
+import estuturas_simples.Sort;
+import estuturas_simples.Vetor;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
@@ -42,6 +50,31 @@ public class Janela extends javax.swing.JFrame {
         }
     }
 
+    List<Thread> threads = new ArrayList<>();
+
+    Thread bubbleThread = null;
+    Thread selectionThread = null;
+    Thread insertionThread = null;
+    Thread quickThread = null;
+
+    Thread criaArvBin = null;
+    Thread criaArvBinAlt = null;
+    Thread criaArvBal = null;
+    Thread criaArvBalAlt = null;
+
+    Vetor vetor = null;
+    Thread geraVetor = null;
+
+    ArvoreBinaria arvoreBin = new ArvoreBinaria();
+    ArvoreBinariaAlt arvoreBinAlt = new ArvoreBinariaAlt();
+    ArvoreAvl arvoreBal = new ArvoreAvl();
+    ArvoreAvlAlt arvoreBalAlt = new ArvoreAvlAlt();
+
+    Sort bubble = null;
+    Sort selection = null;
+    Sort insertion = null;
+    Sort quick = null;
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -49,7 +82,7 @@ public class Janela extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        botaoCalc = new javax.swing.JButton();
+        botaoIniciar = new javax.swing.JButton();
         check_ordenar = new javax.swing.JCheckBox();
         check_bubble = new javax.swing.JCheckBox();
         check_selection = new javax.swing.JCheckBox();
@@ -72,7 +105,7 @@ public class Janela extends javax.swing.JFrame {
         label_numElem5 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         tabela_resultados5 = new javax.swing.JTable();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        barraProgresso = new javax.swing.JProgressBar();
         jSeparator1 = new javax.swing.JSeparator();
         label_numElem6 = new javax.swing.JLabel();
         botao_ok1 = new javax.swing.JButton();
@@ -98,15 +131,15 @@ public class Janela extends javax.swing.JFrame {
 
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 400));
 
-        botaoCalc.setText("Iniciar");
-        botaoCalc.addActionListener(new java.awt.event.ActionListener() {
+        botaoIniciar.setText("Iniciar");
+        botaoIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoCalcActionPerformed(evt);
+                botaoIniciarActionPerformed(evt);
             }
         });
-        botaoCalc.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        botaoIniciar.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                botaoCalcPropertyChange(evt);
+                botaoIniciarPropertyChange(evt);
             }
         });
 
@@ -120,15 +153,35 @@ public class Janela extends javax.swing.JFrame {
 
         check_bubble.setText("Bubble Sort");
         check_bubble.setEnabled(false);
+        check_bubble.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_bubbleActionPerformed(evt);
+            }
+        });
 
         check_selection.setText("Selection Sort");
         check_selection.setEnabled(false);
+        check_selection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_selectionActionPerformed(evt);
+            }
+        });
 
         check_insertion.setText("Insertion Sort");
         check_insertion.setEnabled(false);
+        check_insertion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_insertionActionPerformed(evt);
+            }
+        });
 
         check_quick.setText("Quick Sort");
         check_quick.setEnabled(false);
+        check_quick.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_quickActionPerformed(evt);
+            }
+        });
 
         check_criaArvores.setText("Criar árvores");
         check_criaArvores.setEnabled(false);
@@ -140,6 +193,11 @@ public class Janela extends javax.swing.JFrame {
 
         check_criaBin.setText("Binária (Bianchi)");
         check_criaBin.setEnabled(false);
+        check_criaBin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_criaBinActionPerformed(evt);
+            }
+        });
 
         check_criaAVL.setText("Balanceada AVL (Bianchi)");
         check_criaAVL.setEnabled(false);
@@ -151,9 +209,19 @@ public class Janela extends javax.swing.JFrame {
 
         check_criaAVLAlt.setText("Balanceada AVL (Autor Desconhecido)");
         check_criaAVLAlt.setEnabled(false);
+        check_criaAVLAlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_criaAVLAltActionPerformed(evt);
+            }
+        });
 
         check_criaBinAlt.setText("Binária (Autor Desconhecido)");
         check_criaBinAlt.setEnabled(false);
+        check_criaBinAlt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                check_criaBinAltActionPerformed(evt);
+            }
+        });
 
         label_numElem.setText("Número de elementos:");
 
@@ -278,9 +346,9 @@ public class Janela extends javax.swing.JFrame {
                                     .addComponent(check_criaBinAlt)))))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(botaoCalc, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(barraProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -343,8 +411,8 @@ public class Janela extends javax.swing.JFrame {
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoCalc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -384,7 +452,11 @@ public class Janela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void check_criaAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaAVLActionPerformed
-        // TODO add your handling code here:
+        if (check_criaAVL.isSelected()) {
+            threads.add(criaArvBal);
+        } else {
+            threads.remove(criaArvBal);
+        }
     }//GEN-LAST:event_check_criaAVLActionPerformed
 
     private void check_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_ordenarActionPerformed
@@ -398,58 +470,8 @@ public class Janela extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campo_numActionPerformed
 
-    private void botaoCalcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCalcActionPerformed
-        if (check_bubble.isSelected()) {
-            // Faça algo relacionado ao mainCheckbox aqui
-        }
-    }//GEN-LAST:event_botaoCalcActionPerformed
-
-    private void check_criaArvoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaArvoresActionPerformed
-        if (check_criaArvores.isSelected())
-            liberaArvores();
-        else
-            bloqueiaArvores();
-    }//GEN-LAST:event_check_criaArvoresActionPerformed
-
-    private void botaoCalcPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoCalcPropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botaoCalcPropertyChange
-
-    private void botao_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_gerarActionPerformed
-        String tamanhoVetor = campo_num.getText();
-        Vetor vetor = null;
-        Thread geraVetor = null;
-        try {
-            // Converte a string para um número inteiro
-            int tamanho = Integer.parseInt(tamanhoVetor);
-
-            // Cria o vetor com o tamanho especificado
-            vetor = new Vetor(tamanho);
-            geraVetor = new Thread(new geraVetorThread(vetor));
-            geraVetor.setName("ThreadGeraVetor");
-
-            geraVetor.start();
-        } catch (NumberFormatException ex) {
-            // Trate possíveis erros de conversão
-            JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
-        }
-
-        try {
-            geraVetor.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        liberaResto();
-
-        /*A partir daqui, serão iniciadas as criações e feitas */
-        //CRIA ORDENACOES
-        Sort bubble = new Sort(vetor);
-        Sort selection = new Sort(vetor);
-        Sort insertion = new Sort(vetor);
-        Sort quick = new Sort(vetor);
-
-        Thread bubbleThread = new Thread(new BubbleSortThread(bubble));
+    private void botaoIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIniciarActionPerformed
+        Thread  bubbleThread = new Thread(new BubbleSortThread(bubble));
         bubbleThread.setName("ThreadBubble");
 
         Thread selectionThread = new Thread(new SelectionSortThread(selection));
@@ -460,12 +482,6 @@ public class Janela extends javax.swing.JFrame {
 
         Thread quickThread = new Thread(new QuickSortThread(quick));
         quickThread.setName("ThreadQuick");
-
-        //CRIA ARVORES
-        ArvoreBinaria arvoreBin = new ArvoreBinaria();
-        ArvoreBinariaAlt arvoreBinAlt = new ArvoreBinariaAlt();
-        ArvoreAvl arvoreBal = new ArvoreAvl();
-        ArvoreAvlAlt arvoreBalAlt = new ArvoreAvlAlt();
 
         Thread criaArvBin = new Thread(new criaArvBinThread(arvoreBin, vetor));
         criaArvBin.setName("ThreadCriaArvBin");
@@ -478,15 +494,64 @@ public class Janela extends javax.swing.JFrame {
 
         Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
         criaArvBalAlt.setName("ThreadCriaArvBalAlt");
+        
+        verificaSelecionadas();
 
-        bubbleThread.start();
+        int numThreads = threads.size();
+        int progressoTotal = 0;
+        barraProgresso.setValue(progressoTotal);
+
+        for (Thread thread : threads) {
+
+            System.out.println(threads);
+            
+            if (!thread.isAlive()) {
+                thread.start();
+            }
+        }
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+
+            progressoTotal += 100 / numThreads;
+
+            barraProgresso.setValue(progressoTotal);
+        }
+    }//GEN-LAST:event_botaoIniciarActionPerformed
+
+    private void check_criaArvoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaArvoresActionPerformed
+        if (check_criaArvores.isSelected())
+            liberaArvores();
+        else
+            bloqueiaArvores();
+    }//GEN-LAST:event_check_criaArvoresActionPerformed
+
+    private void botaoIniciarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_botaoIniciarPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoIniciarPropertyChange
+
+    private void botao_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_gerarActionPerformed
+        gerarVetor();
+        liberaResto();
+
+        /*A partir daqui, serão iniciadas as criações e feitas */
+        //CRIA ORDENACOES
+        bubble = new Sort(vetor);
+        selection = new Sort(vetor);
+        insertion = new Sort(vetor);
+        quick = new Sort(vetor);
+
+        /*bubbleThread.start();
         insertionThread.start();
         selectionThread.start();
         quickThread.start();
         criaArvBal.start();
         criaArvBinAlt.start();
         criaArvBin.start();
-        criaArvBalAlt.start();
+        criaArvBalAlt.start();*/
     }//GEN-LAST:event_botao_gerarActionPerformed
 
     private void botao_ok1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_ok1ActionPerformed
@@ -496,6 +561,62 @@ public class Janela extends javax.swing.JFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void check_bubbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_bubbleActionPerformed
+        if (check_bubble.isSelected()) {
+            threads.add(bubbleThread);
+        } else {
+            threads.remove(bubbleThread);
+        }
+    }//GEN-LAST:event_check_bubbleActionPerformed
+
+    private void check_insertionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_insertionActionPerformed
+        if (check_insertion.isSelected()) {
+            threads.add(insertionThread);
+        } else {
+            threads.remove(insertionThread);
+        }
+    }//GEN-LAST:event_check_insertionActionPerformed
+
+    private void check_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_selectionActionPerformed
+        if (check_selection.isSelected()) {
+            threads.add(selectionThread);
+        } else {
+            threads.remove(selectionThread);
+        }
+    }//GEN-LAST:event_check_selectionActionPerformed
+
+    private void check_quickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_quickActionPerformed
+        if (check_quick.isSelected()) {
+            threads.add(quickThread);
+        } else {
+            threads.remove(quickThread);
+        }
+    }//GEN-LAST:event_check_quickActionPerformed
+
+    private void check_criaBinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaBinActionPerformed
+        if (check_criaBin.isSelected()) {
+            threads.add(criaArvBin);
+        } else {
+            threads.remove(criaArvBin);
+        }
+    }//GEN-LAST:event_check_criaBinActionPerformed
+
+    private void check_criaBinAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaBinAltActionPerformed
+        if (check_criaBinAlt.isSelected()) {
+            threads.add(criaArvBinAlt);
+        } else {
+            threads.remove(criaArvBinAlt);
+        }
+    }//GEN-LAST:event_check_criaBinAltActionPerformed
+
+    private void check_criaAVLAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaAVLAltActionPerformed
+        if (check_criaAVLAlt.isSelected()) {
+            threads.add(criaArvBalAlt);
+        } else {
+            threads.remove(criaArvBalAlt);
+        }
+    }//GEN-LAST:event_check_criaAVLAltActionPerformed
 
     /**
      * @param args the command line arguments
@@ -534,7 +655,8 @@ public class Janela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botaoCalc;
+    private javax.swing.JProgressBar barraProgresso;
+    private javax.swing.JButton botaoIniciar;
     private javax.swing.JButton botao_gerar;
     private javax.swing.JButton botao_ok1;
     private javax.swing.JTextField campo_num;
@@ -550,7 +672,6 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JCheckBox check_selection;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
@@ -616,5 +737,33 @@ public class Janela extends javax.swing.JFrame {
     private void liberaResto() {
         check_ordenar.setEnabled(true);
         check_criaArvores.setEnabled(true);
+    }
+
+    private void gerarVetor() {
+        String tamanhoVetor = campo_num.getText();
+        try {
+            // Converte a string para um número inteiro
+            int tamanho = Integer.parseInt(tamanhoVetor);
+
+            // Cria o vetor com o tamanho especificado
+            vetor = new Vetor(tamanho);
+            geraVetor = new Thread(new geraVetorThread(vetor));
+            geraVetor.setName("ThreadGeraVetor");
+
+            geraVetor.start();
+        } catch (NumberFormatException ex) {
+            // Trate possíveis erros de conversão
+            JOptionPane.showMessageDialog(null, "Por favor, insira um número válido.");
+        }
+
+        try {
+            geraVetor.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void verificaSelecionadas() {
+        
     }
 }

@@ -1,5 +1,8 @@
 package mypackage;
 
+import estuturas_simples.Sort;
+import estuturas_simples.Vetor;
+
 class geraVetorThread implements Runnable {
 
     private Vetor vetor;

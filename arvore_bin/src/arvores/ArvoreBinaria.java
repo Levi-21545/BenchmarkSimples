@@ -1,8 +1,8 @@
-package mypackage;
+package arvores;
 
 public class ArvoreBinaria {
 
-    public No raiz;
+    public NoBin raiz;
     public ArvoreBinaria arvoreEsquerda;
     public ArvoreBinaria arvoreDireita;
     double tempoCria;
@@ -18,11 +18,11 @@ public class ArvoreBinaria {
         return this.tempoCria;
     }
 
-    public No getRaiz() {
+    public NoBin getRaiz() {
         return raiz;
     }
 
-    public void setRaiz(No raiz) {
+    public void setRaiz(NoBin raiz) {
         this.raiz = raiz;
     }
 
@@ -42,11 +42,11 @@ public class ArvoreBinaria {
         this.arvoreEsquerda = arvoreEsq;
     }
 
-    public class No {
+    public class NoBin {
 
         private Dado dado;
 
-        public No(Dado dado) {
+        public NoBin(Dado dado) {
             this.dado = dado;
         }
 
@@ -127,11 +127,11 @@ public class ArvoreBinaria {
     ///MÉTODOS PARA INSERIR E REMOVER
     public void inserir_binaria(double valor) {
         Dado dado = new Dado(valor);
-        No no = new No(dado);
+        NoBin no = new NoBin(dado);
         inserir(no);
     }
 
-    public void inserir(No no) {
+    public void inserir(NoBin no) {
         if (this.raiz == null) {
             this.raiz = no;
         } else {

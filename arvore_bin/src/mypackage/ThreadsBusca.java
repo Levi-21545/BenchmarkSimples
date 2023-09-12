@@ -1,12 +1,17 @@
 package mypackage;
 
+import arvores.ArvoreAvlAlt;
+import arvores.ArvoreBinaria;
+import arvores.ArvoreBinariaAlt;
+import arvores.ArvoreAvl;
+
 class BuscaArvBinThread implements Runnable {
 
-    mypackage.Busca busca;
+    estuturas_simples.Busca busca;
     ArvoreBinaria arvore;
     double n;
 
-    public BuscaArvBinThread(mypackage.Busca busca, ArvoreBinaria arvore, double n) {
+    public BuscaArvBinThread(estuturas_simples.Busca busca, ArvoreBinaria arvore, double n) {
         this.busca = busca;
         this.arvore = arvore;
         this.n = n;
@@ -20,11 +25,11 @@ class BuscaArvBinThread implements Runnable {
 
 class BuscaArvBinAltThread implements Runnable {
 
-    mypackage.Busca busca;
+    estuturas_simples.Busca busca;
     ArvoreBinariaAlt arvore;
     double n;
 
-    public BuscaArvBinAltThread(mypackage.Busca busca, ArvoreBinariaAlt arvore, double n) {
+    public BuscaArvBinAltThread(estuturas_simples.Busca busca, ArvoreBinariaAlt arvore, double n) {
         this.busca = busca;
         this.arvore = arvore;
         this.n = n;
@@ -38,11 +43,11 @@ class BuscaArvBinAltThread implements Runnable {
 
 class BuscaArvBalThread implements Runnable {
 
-    mypackage.Busca busca;
+    estuturas_simples.Busca busca;
     ArvoreAvl arvore;
     double n;
 
-    public BuscaArvBalThread(mypackage.Busca busca, ArvoreAvl arvore, double n) {
+    public BuscaArvBalThread(estuturas_simples.Busca busca, ArvoreAvl arvore, double n) {
         this.busca = busca;
         this.arvore = arvore;
         this.n = n;
@@ -56,11 +61,11 @@ class BuscaArvBalThread implements Runnable {
 
 class BuscaArvBalRuimThread implements Runnable {
 
-    mypackage.Busca busca;
+    estuturas_simples.Busca busca;
     ArvoreAvlAlt arvore;
     double n;
 
-    public BuscaArvBalRuimThread(mypackage.Busca busca, ArvoreAvlAlt arvore, double n) {
+    public BuscaArvBalRuimThread(estuturas_simples.Busca busca, ArvoreAvlAlt arvore, double n) {
         this.busca = busca;
         this.arvore = arvore;
         this.n = n;

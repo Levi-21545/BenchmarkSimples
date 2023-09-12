@@ -1,5 +1,14 @@
 package mypackage;
 
+import arvores.ArvoreAvlAlt;
+import arvores.ArvoreBinaria;
+import arvores.ArvoreBinariaAlt;
+import arvores.ArvoreAvl;
+import estuturas_simples.Sort;
+import estuturas_simples.Busca;
+import estuturas_simples.Vetor;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -42,15 +51,12 @@ public class Main {
 
         Thread criaArvBinAlt = new Thread(new criaArvBinAltThread(arvoreBinAlt, vetor));
         criaArvBinAlt.setName("ThreadCriaArvBinAlt");
-        criaArvBinAlt.start();
 
         Thread criaArvBal = new Thread(new criaArvBalThread(arvoreBal, vetor));
         criaArvBal.setName("ThreadCriaArvBal");
-        criaArvBal.start();
 
         Thread criaArvBalRuim = new Thread(new criaArvBalRuimThread(arvoreBalRuim, vetor));
         criaArvBalRuim.setName("ThreadCriaArvBalRuim");
-        criaArvBalRuim.start();
 
         Thread bubbleThread = new Thread(new BubbleSortThread(bubble));
         bubbleThread.setName("ThreadBubble");
@@ -64,11 +70,16 @@ public class Main {
         Thread quickThread = new Thread(new QuickSortThread(quick));
         quickThread.setName("ThreadQuick");
 
+
+        /*criaArvBin.start();
+        criaArvBinAlt.start();
+        criaArvBal.start();
+        criaArvBalRuim.start();
+
         bubbleThread.start();
         selectionThread.start();
         insertionThread.start();
-        quickThread.start();
-
+        quickThread.start();*/
         System.out.println("Deseja ordenar? ");
         int r = leitor.nextInt();
 

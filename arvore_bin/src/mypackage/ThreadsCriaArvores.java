@@ -1,11 +1,18 @@
 package mypackage;
 
+import arvores.ArvoreAvlAlt;
+import arvores.ArvoreBinaria;
+import arvores.ArvoreBinariaAlt;
+import arvores.ArvoreAvl;
+import estuturas_simples.Vetor;
+import estuturas_simples.Cores;
+
 class criaArvBinThread implements Runnable {
 
-    mypackage.Vetor vetor;
+    estuturas_simples.Vetor vetor;
     ArvoreBinaria arvoreBin;
 
-    public criaArvBinThread(ArvoreBinaria arvoreBin, mypackage.Vetor vetor) {
+    public criaArvBinThread(ArvoreBinaria arvoreBin, estuturas_simples.Vetor vetor) {
         this.vetor = vetor;
         this.arvoreBin = arvoreBin;
     }

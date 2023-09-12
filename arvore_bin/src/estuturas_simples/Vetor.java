@@ -1,4 +1,4 @@
-package mypackage;
+package estuturas_simples;
 
 public class Vetor {
 

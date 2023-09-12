@@ -1,8 +1,8 @@
-package mypackage;
+package arvores;
 
 public class ArvoreAvl {
 
-    private No raiz;
+    public NoAvl raiz;
     double tempoCria;
 
     public ArvoreAvl() {
@@ -17,33 +17,33 @@ public class ArvoreAvl {
         return this.tempoCria;
     }
 
-    public No getRaiz() {
+    public NoAvl getRaiz() {
         return this.raiz;
     }
 
-    private int altura(No no) {
+    private int altura(NoAvl no) {
         if (no == null) {
             return 0;
         }
         return no.altura;
     }
 
-    private void atualizarAltura(No no) {
+    private void atualizarAltura(NoAvl no) {
         if (no != null) {
             no.altura = 1 + Math.max(altura(no.esquerda), altura(no.direita));
         }
     }
 
-    private int fatorBalanceamento(No no) {
+    private int fatorBalanceamento(NoAvl no) {
         if (no == null) {
             return 0;
         }
         return altura(no.esquerda) - altura(no.direita);
     }
 
-    private No rotacaoDireita(No y) {
-        No x = y.esquerda;
-        No T2 = x.direita;
+    private NoAvl rotacaoDireita(NoAvl y) {
+        NoAvl x = y.esquerda;
+        NoAvl T2 = x.direita;
 
         x.direita = y;
         y.esquerda = T2;
@@ -54,9 +54,9 @@ public class ArvoreAvl {
         return x;
     }
 
-    private No rotacaoEsquerda(No x) {
-        No y = x.direita;
-        No T2 = y.esquerda;
+    private NoAvl rotacaoEsquerda(NoAvl x) {
+        NoAvl y = x.direita;
+        NoAvl T2 = y.esquerda;
 
         y.esquerda = x;
         x.direita = T2;
@@ -71,9 +71,9 @@ public class ArvoreAvl {
         raiz = inserirAVL(raiz, valor);
     }
 
-    private No inserirAVL(No no, double valor) {
+    private NoAvl inserirAVL(NoAvl no, double valor) {
         if (no == null) {
-            return new No(valor);
+            return new NoAvl(valor);
         }
 
         if (valor < no.valor) {
@@ -115,23 +115,23 @@ public class ArvoreAvl {
         return no;
     }
 
-}
+    public class NoAvl {
 
-class No {
+        double valor;
+        int altura;
+        public NoAvl esquerda;
+        public NoAvl direita;
 
-    double valor;
-    int altura;
-    No esquerda;
-    No direita;
+        public NoAvl(double valor) {
+            this.valor = valor;
+            this.altura = 1; // A altura inicial de um novo nó é 1
+            this.esquerda = null;
+            this.direita = null;
+        }
 
-    public No(double valor) {
-        this.valor = valor;
-        this.altura = 1; // A altura inicial de um novo nó é 1
-        this.esquerda = null;
-        this.direita = null;
+        public double getValor() {
+            return this.valor;
+        }
     }
 
-    public double getValor() {
-        return this.valor;
-    }
 }

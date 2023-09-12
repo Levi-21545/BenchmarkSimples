@@ -1,13 +1,13 @@
-package mypackage;
+package arvores;
 
 import java.util.ArrayList;
 
 public class ArvoreAvlAlt {
 
-    protected No raiz;
+    protected NoAvlAlt raiz;
     protected double tempoCria;
 
-    public No getRaiz() {
+    public NoAvlAlt getRaiz() {
         return this.raiz;
     }
     
@@ -19,11 +19,11 @@ public class ArvoreAvlAlt {
     }
 
     public void inserir(double k) {
-        No n = new No(k);
+        NoAvlAlt n = new NoAvlAlt(k);
         inserirAVL(this.raiz, n);
     }
 
-    public void inserirAVL(No aComparar, No aInserir) {
+    public void inserirAVL(NoAvlAlt aComparar, NoAvlAlt aInserir) {
 
         if (aComparar == null) {
             this.raiz = aInserir;
@@ -58,7 +58,7 @@ public class ArvoreAvlAlt {
         }
     }
 
-    public void verificarBalanceamento(No atual) {
+    public void verificarBalanceamento(NoAvlAlt atual) {
         setBalanceamento(atual);
         int balanceamento = atual.getBalanceamento();
 
@@ -92,7 +92,7 @@ public class ArvoreAvlAlt {
         removerAVL(this.raiz, k);
     }
 
-    public void removerAVL(No atual, int k) {
+    public void removerAVL(NoAvlAlt atual, int k) {
         if (atual == null) {
             return;
 
@@ -110,8 +110,8 @@ public class ArvoreAvlAlt {
         }
     }
 
-    public void removerNoEncontrado(No aRemover) {
-        No r;
+    public void removerNoEncontrado(NoAvlAlt aRemover) {
+        NoAvlAlt r;
 
         if (aRemover.getEsquerda() == null || aRemover.getDireita() == null) {
 
@@ -127,7 +127,7 @@ public class ArvoreAvlAlt {
             aRemover.setChave(r.getChave());
         }
 
-        No p;
+        NoAvlAlt p;
         if (r.getEsquerda() != null) {
             p = r.getEsquerda();
         } else {
@@ -151,9 +151,9 @@ public class ArvoreAvlAlt {
         r = null;
     }
 
-    public No rotacaoEsquerda(No inicial) {
+    public NoAvlAlt rotacaoEsquerda(NoAvlAlt inicial) {
 
-        No direita = inicial.getDireita();
+        NoAvlAlt direita = inicial.getDireita();
         direita.setPai(inicial.getPai());
 
         inicial.setDireita(direita.getEsquerda());
@@ -181,9 +181,9 @@ public class ArvoreAvlAlt {
         return direita;
     }
 
-    public No rotacaoDireita(No inicial) {
+    public NoAvlAlt rotacaoDireita(NoAvlAlt inicial) {
 
-        No esquerda = inicial.getEsquerda();
+        NoAvlAlt esquerda = inicial.getEsquerda();
         esquerda.setPai(inicial.getPai());
 
         inicial.setEsquerda(esquerda.getDireita());
@@ -211,25 +211,25 @@ public class ArvoreAvlAlt {
         return esquerda;
     }
 
-    public No duplaRotacaoEsquerdaDireita(No inicial) {
+    public NoAvlAlt duplaRotacaoEsquerdaDireita(NoAvlAlt inicial) {
         inicial.setEsquerda(rotacaoEsquerda(inicial.getEsquerda()));
         return rotacaoDireita(inicial);
     }
 
-    public No duplaRotacaoDireitaEsquerda(No inicial) {
+    public NoAvlAlt duplaRotacaoDireitaEsquerda(NoAvlAlt inicial) {
         inicial.setDireita(rotacaoDireita(inicial.getDireita()));
         return rotacaoEsquerda(inicial);
     }
 
-    public No sucessor(No q) {
+    public NoAvlAlt sucessor(NoAvlAlt q) {
         if (q.getDireita() != null) {
-            No r = q.getDireita();
+            NoAvlAlt r = q.getDireita();
             while (r.getEsquerda() != null) {
                 r = r.getEsquerda();
             }
             return r;
         } else {
-            No p = q.getPai();
+            NoAvlAlt p = q.getPai();
             while (p != null && q == p.getDireita()) {
                 q = p;
                 p = q.getPai();
@@ -238,7 +238,7 @@ public class ArvoreAvlAlt {
         }
     }
 
-    private int altura(No atual) {
+    private int altura(NoAvlAlt atual) {
         if (atual == null) {
             return -1;
         }
@@ -257,17 +257,17 @@ public class ArvoreAvlAlt {
         }
     }
 
-    private void setBalanceamento(No no) {
+    private void setBalanceamento(NoAvlAlt no) {
         no.setBalanceamento(altura(no.getDireita()) - altura(no.getEsquerda()));
     }
 
-    final protected ArrayList<No> inorder() {
-        ArrayList<No> ret = new ArrayList<No>();
+    final protected ArrayList<NoAvlAlt> inorder() {
+        ArrayList<NoAvlAlt> ret = new ArrayList<NoAvlAlt>();
         inorder(raiz, ret);
         return ret;
     }
 
-    final protected void inorder(No no, ArrayList<No> lista) {
+    final protected void inorder(NoAvlAlt no, ArrayList<NoAvlAlt> lista) {
         if (no == null) {
             return;
         }
@@ -276,15 +276,15 @@ public class ArvoreAvlAlt {
         inorder(no.getDireita(), lista);
     }
 
-    public class No {
+    public class NoAvlAlt {
 
-        private No esquerda;
-        private No direita;
-        private No pai;
+        private NoAvlAlt esquerda;
+        private NoAvlAlt direita;
+        private NoAvlAlt pai;
         private double chave;
         private int balanceamento;
 
-        public No(double k) {
+        public NoAvlAlt(double k) {
             setEsquerda(setDireita(setPai(null)));
             setBalanceamento(0);
             setChave(k);
@@ -310,29 +310,29 @@ public class ArvoreAvlAlt {
             this.balanceamento = balanceamento;
         }
 
-        public No getPai() {
+        public NoAvlAlt getPai() {
             return pai;
         }
 
-        public No setPai(No pai) {
+        public NoAvlAlt setPai(NoAvlAlt pai) {
             this.pai = pai;
             return pai;
         }
 
-        public No getDireita() {
+        public NoAvlAlt getDireita() {
             return direita;
         }
 
-        public No setDireita(No direita) {
+        public NoAvlAlt setDireita(NoAvlAlt direita) {
             this.direita = direita;
             return direita;
         }
 
-        public No getEsquerda() {
+        public NoAvlAlt getEsquerda() {
             return esquerda;
         }
 
-        public void setEsquerda(No esquerda) {
+        public void setEsquerda(NoAvlAlt esquerda) {
             this.esquerda = esquerda;
         }
     }
