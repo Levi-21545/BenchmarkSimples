@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,8 +59,6 @@ public class Janela extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         botaoIniciar = new javax.swing.JButton();
         check_ordenar = new javax.swing.JCheckBox();
@@ -76,32 +75,19 @@ public class Janela extends javax.swing.JFrame {
         campo_num = new javax.swing.JTextField();
         botao_gerar = new javax.swing.JButton();
         label_numElem1 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        scroll_sort = new javax.swing.JScrollPane();
         tabela_ordenacao = new javax.swing.JTable();
         label_numElem4 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
+        scroll_cria = new javax.swing.JScrollPane();
         tabela_criaArv = new javax.swing.JTable();
         label_numElem5 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
+        scroll_busca = new javax.swing.JScrollPane();
         tabela_buscaArv = new javax.swing.JTable();
         barraProgresso = new javax.swing.JProgressBar();
         jSeparator1 = new javax.swing.JSeparator();
         label_numElem6 = new javax.swing.JLabel();
         botao_ok1 = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -220,6 +206,8 @@ public class Janela extends javax.swing.JFrame {
 
         label_numElem1.setText("Ordenação:");
 
+        scroll_sort.setViewportView(null);
+
         tabela_ordenacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
             },
@@ -227,7 +215,7 @@ public class Janela extends javax.swing.JFrame {
                 "Tipo", "Tempo"
             }
         ));
-        jScrollPane3.setViewportView(tabela_ordenacao);
+        scroll_sort.setViewportView(tabela_ordenacao);
 
         label_numElem4.setText("Criação da árvore:");
 
@@ -238,7 +226,7 @@ public class Janela extends javax.swing.JFrame {
                 "Tipo", "Tempo"
             }
         ));
-        jScrollPane6.setViewportView(tabela_criaArv);
+        scroll_cria.setViewportView(tabela_criaArv);
         if (tabela_criaArv.getColumnModel().getColumnCount() > 0) {
             tabela_criaArv.getColumnModel().getColumn(0).setHeaderValue("Title 1");
             tabela_criaArv.getColumnModel().getColumn(1).setHeaderValue("Title 2");
@@ -253,7 +241,7 @@ public class Janela extends javax.swing.JFrame {
                 "Tipo", "Tempo"
             }
         ));
-        jScrollPane7.setViewportView(tabela_buscaArv);
+        scroll_busca.setViewportView(tabela_buscaArv);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -325,20 +313,20 @@ public class Janela extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(8, 8, 8)
                                     .addComponent(label_numElem1))
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(26, 26, 26)
                                     .addComponent(label_numElem4))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
-                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(scroll_cria, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(8, 8, 8)
                                     .addComponent(label_numElem5))
-                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(scroll_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -389,16 +377,16 @@ public class Janela extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(label_numElem4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scroll_cria, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(label_numElem5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(scroll_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(label_numElem1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -455,7 +443,6 @@ public class Janela extends javax.swing.JFrame {
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-            progressoTotal += 100 / numThreads;
 
             double tempoExec;
             String nome = null, tempo = null;
@@ -478,12 +465,58 @@ public class Janela extends javax.swing.JFrame {
                     tempo = String.valueOf(quick.getTempoExecucao()) + " ms";
                     break;
             }
+            DefaultTableModel modeloOrdenacao = (DefaultTableModel) tabela_ordenacao.getModel();
+            modeloOrdenacao.addRow(new Object[]{nome, tempo});
 
-            DefaultTableModel modelo = (DefaultTableModel) tabela_ordenacao.getModel();
+            JScrollBar verticalScrollBar = scroll_sort.getVerticalScrollBar();
+            verticalScrollBar.setValue(verticalScrollBar.getMaximum());
 
-            modelo.addRow(new Object[]{nome, tempo, Color.yellow});
             cont++;
 
+            progressoTotal += 100 / numThreads;
+            barraProgresso.setValue(progressoTotal);
+        }
+
+        for (int i = 0; i < threadsArvore.size(); i++) {
+            Thread arvore = threadsArvore.get(i);
+            System.out.println(arvore);
+            arvore.start();
+            try {
+                arvore.join();
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
+
+            double tempoExec;
+            String nome = null, tempo = null;
+
+            switch (arvore.getName()) {
+                case "ThreadCriaArvBin":
+                    nome = "Binaria";
+                    tempo = String.valueOf(arvoreBin.getTempoCria()) + " ms";
+                    break;
+                case "ThreadCriaArvBinAlt":
+                    nome = "Binaria Alt";
+                    tempo = String.valueOf(arvoreBinAlt.getTempoCria()) + " ms";
+                    break;
+                case "ThreadCriaArvBal":
+                    nome = "Balanceada";
+                    tempo = String.valueOf(arvoreBal.getTempoCria()) + " ms";
+                    break;
+                case "ThreadCriaArvBalAlt":
+                    nome = "Balanceada Alt ";
+                    tempo = String.valueOf(arvoreBalAlt.getTempoCria()) + " ms";
+                    break;
+            }
+            DefaultTableModel modeloCriaArvore = (DefaultTableModel) tabela_criaArv.getModel();
+            modeloCriaArvore.addRow(new Object[]{nome, tempo});
+
+            JScrollBar verticalScrollBar = scroll_cria.getVerticalScrollBar();
+            verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+
+            cont++;
+
+            progressoTotal += 100 / numThreads;
             barraProgresso.setValue(progressoTotal);
         }
     }//GEN-LAST:event_botaoIniciarActionPerformed
@@ -610,17 +643,15 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JCheckBox check_selection;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel label_numElem;
     private javax.swing.JLabel label_numElem1;
     private javax.swing.JLabel label_numElem4;
     private javax.swing.JLabel label_numElem5;
     private javax.swing.JLabel label_numElem6;
+    private javax.swing.JScrollPane scroll_busca;
+    private javax.swing.JScrollPane scroll_cria;
+    private javax.swing.JScrollPane scroll_sort;
     private javax.swing.JTable tabela_buscaArv;
     private javax.swing.JTable tabela_criaArv;
     private javax.swing.JTable tabela_ordenacao;
