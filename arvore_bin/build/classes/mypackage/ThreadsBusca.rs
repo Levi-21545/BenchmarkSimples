@@ -1,4 +1,0 @@
-mypackage.BuscaArvBalRuimThread
-mypackage.BuscaArvBinAltThread
-mypackage.BuscaArvBalThread
-mypackage.BuscaArvBinThread

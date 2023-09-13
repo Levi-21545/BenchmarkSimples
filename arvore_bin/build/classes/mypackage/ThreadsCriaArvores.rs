@@ -1,4 +1,0 @@
-mypackage.criaArvBinAltThread
-mypackage.criaArvBalRuimThread
-mypackage.criaArvBalThread
-mypackage.criaArvBinThread
