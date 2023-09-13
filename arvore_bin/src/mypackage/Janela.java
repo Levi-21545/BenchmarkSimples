@@ -10,10 +10,13 @@ import arvores.ArvoreBinaria;
 import arvores.ArvoreBinariaAlt;
 import estuturas_simples.Sort;
 import estuturas_simples.Vetor;
+import estuturas_simples.Cores;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -35,22 +38,8 @@ public class Janela extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
 
-    private void ordenar() {
-        if (check_bubble.isSelected()) {
-            System.out.println("Ordenando Bubble");
-        }
-        if (check_selection.isSelected()) {
-            System.out.println("Ordenando Selection");
-        }
-        if (check_insertion.isSelected()) {
-            System.out.println("Ordenando Insertion");
-        }
-        if (check_quick.isSelected()) {
-            System.out.println("Ordenando Quick");
-        }
-    }
-
-    List<Thread> threads = new ArrayList<>();
+    List<Thread> threadsSort = new ArrayList<>();
+    List<Thread> threadsArvore = new ArrayList<>();
 
     Vetor vetor = null;
     Thread geraVetor = null;
@@ -88,13 +77,13 @@ public class Janela extends javax.swing.JFrame {
         botao_gerar = new javax.swing.JButton();
         label_numElem1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tabela_resultados1 = new javax.swing.JTable();
+        tabela_ordenacao = new javax.swing.JTable();
         label_numElem4 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        tabela_resultados4 = new javax.swing.JTable();
+        tabela_criaArv = new javax.swing.JTable();
         label_numElem5 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        tabela_resultados5 = new javax.swing.JTable();
+        tabela_buscaArv = new javax.swing.JTable();
         barraProgresso = new javax.swing.JProgressBar();
         jSeparator1 = new javax.swing.JSeparator();
         label_numElem6 = new javax.swing.JLabel();
@@ -231,48 +220,40 @@ public class Janela extends javax.swing.JFrame {
 
         label_numElem1.setText("Ordenação:");
 
-        tabela_resultados1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_ordenacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
                 "Tipo", "Tempo"
             }
         ));
-        jScrollPane3.setViewportView(tabela_resultados1);
+        jScrollPane3.setViewportView(tabela_ordenacao);
 
         label_numElem4.setText("Criação da árvore:");
 
-        tabela_resultados4.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_criaArv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
                 "Tipo", "Tempo"
             }
         ));
-        jScrollPane6.setViewportView(tabela_resultados4);
+        jScrollPane6.setViewportView(tabela_criaArv);
+        if (tabela_criaArv.getColumnModel().getColumnCount() > 0) {
+            tabela_criaArv.getColumnModel().getColumn(0).setHeaderValue("Title 1");
+            tabela_criaArv.getColumnModel().getColumn(1).setHeaderValue("Title 2");
+        }
 
         label_numElem5.setText("Busca na árvore:");
 
-        tabela_resultados5.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_buscaArv.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
             },
             new String [] {
                 "Tipo", "Tempo"
             }
         ));
-        jScrollPane7.setViewportView(tabela_resultados5);
+        jScrollPane7.setViewportView(tabela_buscaArv);
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -405,20 +386,20 @@ public class Janela extends javax.swing.JFrame {
                     .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(label_numElem5)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(label_numElem4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(label_numElem5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(label_numElem1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(label_numElem4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(242, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -458,26 +439,50 @@ public class Janela extends javax.swing.JFrame {
 
     private void botaoIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIniciarActionPerformed
 
-        verificaSelecionadas();
+        verificaOrdenar();
+        verificaArvores();
 
-        int numThreads = threads.size();
-        int progressoTotal = 0;
+        int numThreads = threadsSort.size() + threadsArvore.size();
+        int progressoTotal = 0, cont = 1;
         barraProgresso.setValue(progressoTotal);
 
-        for (Thread thread : threads) {
-
-            System.out.println(thread);
-
-            thread.start();
-        }
-        for (Thread thread : threads) {
+        for (int i = 0; i < threadsSort.size(); i++) {
+            Thread sort = threadsSort.get(i);
+            System.out.println(sort);
+            sort.start();
             try {
-                thread.join();
+                sort.join();
             } catch (InterruptedException ex) {
                 ex.printStackTrace();
             }
-
             progressoTotal += 100 / numThreads;
+
+            double tempoExec;
+            String nome = null, tempo = null;
+
+            switch (sort.getName()) {
+                case "ThreadBubble":
+                    nome = "Bubble Sort";
+                    tempo = String.valueOf(bubble.getTempoExecucao()) + " ms";
+                    break;
+                case "ThreadSelection":
+                    nome = "Selection Sort";
+                    tempo = String.valueOf(selection.getTempoExecucao()) + " ms";
+                    break;
+                case "ThreadInsertion":
+                    nome = "Insertion Sort";
+                    tempo = String.valueOf(insertion.getTempoExecucao()) + " ms";
+                    break;
+                case "ThreadQuick":
+                    nome = "Quick Sort";
+                    tempo = String.valueOf(quick.getTempoExecucao()) + " ms";
+                    break;
+            }
+
+            DefaultTableModel modelo = (DefaultTableModel) tabela_ordenacao.getModel();
+
+            modelo.addRow(new Object[]{nome, tempo, Color.yellow});
+            cont++;
 
             barraProgresso.setValue(progressoTotal);
         }
@@ -616,9 +621,9 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel label_numElem4;
     private javax.swing.JLabel label_numElem5;
     private javax.swing.JLabel label_numElem6;
-    private javax.swing.JTable tabela_resultados1;
-    private javax.swing.JTable tabela_resultados4;
-    private javax.swing.JTable tabela_resultados5;
+    private javax.swing.JTable tabela_buscaArv;
+    private javax.swing.JTable tabela_criaArv;
+    private javax.swing.JTable tabela_ordenacao;
     // End of variables declaration//GEN-END:variables
 
     private void liberaOrdenas() {
@@ -696,75 +701,63 @@ public class Janela extends javax.swing.JFrame {
         }
     }
 
-    private void verificaSelecionadas() {
+    private void verificaOrdenar() {
+        threadsSort.clear();
 
-        threads.clear();
+        if (check_bubble.isSelected()) {
+            Thread bubbleThread = new Thread(new BubbleSortThread(bubble));
+            bubbleThread.setName("ThreadBubble");
+            threadsSort.add(bubbleThread);
+        }
+        if (check_selection.isSelected()) {
+            Thread selectionThread = new Thread(new SelectionSortThread(selection));
+            selectionThread.setName("ThreadSelection");
+            threadsSort.add(selectionThread);
+        }
+        if (check_insertion.isSelected()) {
+            Thread insertionThread = new Thread(new InsertionSortThread(insertion));
+
+            insertionThread.setName("ThreadInsertion");
+            threadsSort.add(insertionThread);
+        }
+        if (check_quick.isSelected()) {
+            Thread quickThread = new Thread(new QuickSortThread(quick));
+
+            quickThread.setName("ThreadQuick");
+            threadsSort.add(quickThread);
+
+        }
+    }
+
+    private void verificaArvores() {
+
+        threadsArvore.clear();
 
         //THREADS ARVORES
-        Thread criaArvBin = new Thread(new criaArvBinThread(arvoreBin, vetor));
-        criaArvBin.setName("ThreadCriaArvBin");
         if (check_criaBin.isSelected()) {
-            threads.add(criaArvBin);
-        } else {
-            threads.remove(criaArvBin);
+            Thread criaArvBin = new Thread(new criaArvBinThread(arvoreBin, vetor));
+            criaArvBin.setName("ThreadCriaArvBin");
+            threadsArvore.add(criaArvBin);
         }
-        Thread criaArvBinAlt = new Thread(new criaArvBinAltThread(arvoreBinAlt, vetor));
-        criaArvBinAlt.setName("ThreadCriaArvBinAlt");
+
         if (check_criaBinAlt.isSelected()) {
-
-            threads.add(criaArvBinAlt);
-        } else {
-            threads.remove(criaArvBinAlt);
+            Thread criaArvBinAlt = new Thread(new criaArvBinAltThread(arvoreBinAlt, vetor));
+            criaArvBinAlt.setName("ThreadCriaArvBinAlt");
+            threadsArvore.add(criaArvBinAlt);
         }
-        Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
-        criaArvBalAlt.setName("ThreadCriaArvBalAlt");
+
         if (check_criaAVLAlt.isSelected()) {
-            threads.add(criaArvBalAlt);
-        } else {
-            threads.remove(criaArvBalAlt);
+            Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
+            criaArvBalAlt.setName("ThreadCriaArvBalAlt");
+            threadsArvore.add(criaArvBalAlt);
         }
-        Thread criaArvBal = new Thread(new criaArvBalThread(arvoreBal, vetor));
-        criaArvBal.setName("ThreadCriaArvBal");
-        if (check_criaAVL.isSelected()) {
 
-            threads.add(criaArvBal);
-        } else {
-            threads.remove(criaArvBal);
+        if (check_criaAVL.isSelected()) {
+            Thread criaArvBal = new Thread(new criaArvBalThread(arvoreBal, vetor));
+            criaArvBal.setName("ThreadCriaArvBal");
+            threadsArvore.add(criaArvBal);
         }
 
         //THREADS ORDENACAO
-        Thread bubbleThread = new Thread(new BubbleSortThread(bubble));
-        bubbleThread.setName("ThreadBubble");
-        if (check_bubble.isSelected()) {
-
-            threads.add(bubbleThread);
-        } else {
-            threads.remove(bubbleThread);
-        }
-        Thread selectionThread = new Thread(new SelectionSortThread(selection));
-        selectionThread.setName("ThreadSelection");
-        if (check_selection.isSelected()) {
-
-            threads.add(selectionThread);
-        } else {
-            threads.remove(criaArvBalAlt);
-        }
-        Thread insertionThread = new Thread(new InsertionSortThread(insertion));
-        insertionThread.setName("ThreadInsertion");
-        if (check_insertion.isSelected()) {
-
-            threads.add(insertionThread);
-        } else {
-            threads.remove(insertionThread);
-        }
-        Thread quickThread = new Thread(new QuickSortThread(quick));
-        quickThread.setName("ThreadQuick");
-        if (check_quick.isSelected()) {
-
-            threads.add(quickThread);
-        } else {
-            threads.remove(quickThread);
-        }
-
     }
 }

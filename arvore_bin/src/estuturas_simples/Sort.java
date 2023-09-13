@@ -15,6 +15,10 @@ public class Sort {
         return this.tempoExecucao;
     }
 
+    public void setTempoExecucao(double tempoExec) {
+        this.tempoExecucao = tempoExec;
+    }
+
     public void imprimeVetor() {
         System.out.println("");
         for (int i = 0; i < vetor.length; i++) {

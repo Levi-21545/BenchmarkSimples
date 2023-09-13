@@ -2,6 +2,7 @@ package mypackage;
 
 import estuturas_simples.Sort;
 import estuturas_simples.Vetor;
+import java.util.Arrays;
 
 class geraVetorThread implements Runnable {
 
@@ -24,6 +25,10 @@ class BubbleSortThread implements Runnable {
 
     public BubbleSortThread(Sort bubble) {
         this.bubble = bubble;
+    }
+
+    public Sort getSort() {
+        return this.bubble;
     }
 
     @Override
