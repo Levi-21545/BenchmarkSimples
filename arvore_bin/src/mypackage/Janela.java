@@ -52,16 +52,6 @@ public class Janela extends javax.swing.JFrame {
 
     List<Thread> threads = new ArrayList<>();
 
-    Thread bubbleThread = null;
-    Thread selectionThread = null;
-    Thread insertionThread = null;
-    Thread quickThread = null;
-
-    Thread criaArvBin = null;
-    Thread criaArvBinAlt = null;
-    Thread criaArvBal = null;
-    Thread criaArvBalAlt = null;
-
     Vetor vetor = null;
     Thread geraVetor = null;
 
@@ -452,11 +442,7 @@ public class Janela extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void check_criaAVLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaAVLActionPerformed
-        if (check_criaAVL.isSelected()) {
-            threads.add(criaArvBal);
-        } else {
-            threads.remove(criaArvBal);
-        }
+
     }//GEN-LAST:event_check_criaAVLActionPerformed
 
     private void check_ordenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_ordenarActionPerformed
@@ -471,30 +457,7 @@ public class Janela extends javax.swing.JFrame {
     }//GEN-LAST:event_campo_numActionPerformed
 
     private void botaoIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoIniciarActionPerformed
-        Thread  bubbleThread = new Thread(new BubbleSortThread(bubble));
-        bubbleThread.setName("ThreadBubble");
 
-        Thread selectionThread = new Thread(new SelectionSortThread(selection));
-        selectionThread.setName("ThreadSelection");
-
-        Thread insertionThread = new Thread(new InsertionSortThread(insertion));
-        insertionThread.setName("ThreadInsertion");
-
-        Thread quickThread = new Thread(new QuickSortThread(quick));
-        quickThread.setName("ThreadQuick");
-
-        Thread criaArvBin = new Thread(new criaArvBinThread(arvoreBin, vetor));
-        criaArvBin.setName("ThreadCriaArvBin");
-
-        Thread criaArvBinAlt = new Thread(new criaArvBinAltThread(arvoreBinAlt, vetor));
-        criaArvBinAlt.setName("ThreadCriaArvBinAlt");
-
-        Thread criaArvBal = new Thread(new criaArvBalThread(arvoreBal, vetor));
-        criaArvBal.setName("ThreadCriaArvBal");
-
-        Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
-        criaArvBalAlt.setName("ThreadCriaArvBalAlt");
-        
         verificaSelecionadas();
 
         int numThreads = threads.size();
@@ -503,11 +466,9 @@ public class Janela extends javax.swing.JFrame {
 
         for (Thread thread : threads) {
 
-            System.out.println(threads);
-            
-            if (!thread.isAlive()) {
-                thread.start();
-            }
+            System.out.println(thread);
+
+            thread.start();
         }
         for (Thread thread : threads) {
             try {
@@ -563,59 +524,31 @@ public class Janela extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void check_bubbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_bubbleActionPerformed
-        if (check_bubble.isSelected()) {
-            threads.add(bubbleThread);
-        } else {
-            threads.remove(bubbleThread);
-        }
+
     }//GEN-LAST:event_check_bubbleActionPerformed
 
     private void check_insertionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_insertionActionPerformed
-        if (check_insertion.isSelected()) {
-            threads.add(insertionThread);
-        } else {
-            threads.remove(insertionThread);
-        }
+
     }//GEN-LAST:event_check_insertionActionPerformed
 
     private void check_selectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_selectionActionPerformed
-        if (check_selection.isSelected()) {
-            threads.add(selectionThread);
-        } else {
-            threads.remove(selectionThread);
-        }
+
     }//GEN-LAST:event_check_selectionActionPerformed
 
     private void check_quickActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_quickActionPerformed
-        if (check_quick.isSelected()) {
-            threads.add(quickThread);
-        } else {
-            threads.remove(quickThread);
-        }
+
     }//GEN-LAST:event_check_quickActionPerformed
 
     private void check_criaBinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaBinActionPerformed
-        if (check_criaBin.isSelected()) {
-            threads.add(criaArvBin);
-        } else {
-            threads.remove(criaArvBin);
-        }
+
     }//GEN-LAST:event_check_criaBinActionPerformed
 
     private void check_criaBinAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaBinAltActionPerformed
-        if (check_criaBinAlt.isSelected()) {
-            threads.add(criaArvBinAlt);
-        } else {
-            threads.remove(criaArvBinAlt);
-        }
+
     }//GEN-LAST:event_check_criaBinAltActionPerformed
 
     private void check_criaAVLAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaAVLAltActionPerformed
-        if (check_criaAVLAlt.isSelected()) {
-            threads.add(criaArvBalAlt);
-        } else {
-            threads.remove(criaArvBalAlt);
-        }
+
     }//GEN-LAST:event_check_criaAVLAltActionPerformed
 
     /**
@@ -764,6 +697,74 @@ public class Janela extends javax.swing.JFrame {
     }
 
     private void verificaSelecionadas() {
-        
+
+        threads.clear();
+
+        //THREADS ARVORES
+        Thread criaArvBin = new Thread(new criaArvBinThread(arvoreBin, vetor));
+        criaArvBin.setName("ThreadCriaArvBin");
+        if (check_criaBin.isSelected()) {
+            threads.add(criaArvBin);
+        } else {
+            threads.remove(criaArvBin);
+        }
+        Thread criaArvBinAlt = new Thread(new criaArvBinAltThread(arvoreBinAlt, vetor));
+        criaArvBinAlt.setName("ThreadCriaArvBinAlt");
+        if (check_criaBinAlt.isSelected()) {
+
+            threads.add(criaArvBinAlt);
+        } else {
+            threads.remove(criaArvBinAlt);
+        }
+        Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
+        criaArvBalAlt.setName("ThreadCriaArvBalAlt");
+        if (check_criaAVLAlt.isSelected()) {
+            threads.add(criaArvBalAlt);
+        } else {
+            threads.remove(criaArvBalAlt);
+        }
+        Thread criaArvBal = new Thread(new criaArvBalThread(arvoreBal, vetor));
+        criaArvBal.setName("ThreadCriaArvBal");
+        if (check_criaAVL.isSelected()) {
+
+            threads.add(criaArvBal);
+        } else {
+            threads.remove(criaArvBal);
+        }
+
+        //THREADS ORDENACAO
+        Thread bubbleThread = new Thread(new BubbleSortThread(bubble));
+        bubbleThread.setName("ThreadBubble");
+        if (check_bubble.isSelected()) {
+
+            threads.add(bubbleThread);
+        } else {
+            threads.remove(bubbleThread);
+        }
+        Thread selectionThread = new Thread(new SelectionSortThread(selection));
+        selectionThread.setName("ThreadSelection");
+        if (check_selection.isSelected()) {
+
+            threads.add(selectionThread);
+        } else {
+            threads.remove(criaArvBalAlt);
+        }
+        Thread insertionThread = new Thread(new InsertionSortThread(insertion));
+        insertionThread.setName("ThreadInsertion");
+        if (check_insertion.isSelected()) {
+
+            threads.add(insertionThread);
+        } else {
+            threads.remove(insertionThread);
+        }
+        Thread quickThread = new Thread(new QuickSortThread(quick));
+        quickThread.setName("ThreadQuick");
+        if (check_quick.isSelected()) {
+
+            threads.add(quickThread);
+        } else {
+            threads.remove(quickThread);
+        }
+
     }
 }

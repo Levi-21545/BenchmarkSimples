@@ -117,11 +117,11 @@ public class Sort {
 
     }
 
-    private void quickSort(double[] vetor, int inicio, int fim) {
-        if (inicio < fim) {
-            int posicaoPivo = separar(vetor, inicio, fim);
-            quickSort(vetor, inicio, posicaoPivo - 1);
-            quickSort(vetor, posicaoPivo + 1, fim);
+    private void quickSort(double[] vetor, int o, int fim) {
+        if (o < fim) {
+            int p = separar(vetor, o, fim);
+            quickSort(vetor, o, p - 1);
+            quickSort(vetor, p + 1, fim);
         }
     }
 

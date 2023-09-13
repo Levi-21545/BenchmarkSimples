@@ -71,11 +71,8 @@ class QuickSortThread implements Runnable {
 
     @Override
     public void run() {
+
         quick.ordenaQuick();
+
     }
 }
-
-
-
-
-

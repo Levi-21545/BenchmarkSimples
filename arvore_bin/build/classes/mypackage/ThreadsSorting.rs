@@ -1,0 +1,5 @@
+mypackage.BubbleSortThread
+mypackage.geraVetorThread
+mypackage.InsertionSortThread
+mypackage.SelectionSortThread
+mypackage.QuickSortThread
