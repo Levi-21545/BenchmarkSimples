@@ -56,4 +56,9 @@ public class Vetor {
         System.out.println(this.vetor[aleatorio] + "\n");
 
     }
+
+    public double getAleatorio() {
+        int aleatorio = (int) (Math.random() * this.vetor.length);
+        return vetor[aleatorio];
+    }
 }

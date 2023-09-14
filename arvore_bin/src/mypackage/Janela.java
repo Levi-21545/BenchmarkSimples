@@ -44,6 +44,7 @@ public class Janela extends javax.swing.JFrame {
 
     Vetor vetor = null;
     Thread geraVetor = null;
+    double valorBusca = 0;
 
     ArvoreBinaria arvoreBin = new ArvoreBinaria();
     ArvoreBinariaAlt arvoreBinAlt = new ArvoreBinariaAlt();
@@ -86,8 +87,8 @@ public class Janela extends javax.swing.JFrame {
         barraProgresso = new javax.swing.JProgressBar();
         jSeparator1 = new javax.swing.JSeparator();
         label_numElem6 = new javax.swing.JLabel();
-        botao_ok1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        botao_busca = new javax.swing.JButton();
+        combo_busca = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -247,17 +248,23 @@ public class Janela extends javax.swing.JFrame {
 
         label_numElem6.setText("Buscar elemento:");
 
-        botao_ok1.setText("Buscar");
-        botao_ok1.addActionListener(new java.awt.event.ActionListener() {
+        botao_busca.setText("Buscar");
+        botao_busca.setEnabled(false);
+        botao_busca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botao_ok1ActionPerformed(evt);
+                botao_buscaActionPerformed(evt);
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aleatório", "Menor", "Maior", "Primeiro", "Último" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        combo_busca.setEnabled(false);
+        combo_busca.addItem(new Item("Primeiro", 2));
+        combo_busca.addItem(new Item("Último", 3.75));
+        combo_busca.addItem(new Item("Menor", 3.75));
+        combo_busca.addItem(new Item("Maior", 3.75));
+        combo_busca.addItem(new Item("Não contém", 3.75));
+        combo_busca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                combo_buscaActionPerformed(evt);
             }
         });
 
@@ -276,9 +283,9 @@ public class Janela extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(label_numElem6)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(combo_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botao_ok1))))
+                                .addComponent(botao_busca))))
                     .addComponent(label_numElem)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,8 +347,8 @@ public class Janela extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(botao_gerar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(campo_num, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botao_ok1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botao_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -553,13 +560,19 @@ public class Janela extends javax.swing.JFrame {
         criaArvBalAlt.start();*/
     }//GEN-LAST:event_botao_gerarActionPerformed
 
-    private void botao_ok1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_ok1ActionPerformed
+    private void botao_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_buscaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botao_ok1ActionPerformed
+    }//GEN-LAST:event_botao_buscaActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void combo_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_buscaActionPerformed
+        Item selectedItem = (Item) combo_busca.getSelectedItem();
+        if (selectedItem != null) {
+            double valorBusca = selectedItem.getValor();
+            System.out.println("Valor selecionado: " + valorBusca);
+        }
+        liberaBusca();
+    }//GEN-LAST:event_combo_buscaActionPerformed
 
     private void check_bubbleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_bubbleActionPerformed
 
@@ -628,8 +641,8 @@ public class Janela extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar barraProgresso;
     private javax.swing.JButton botaoIniciar;
+    private javax.swing.JButton botao_busca;
     private javax.swing.JButton botao_gerar;
-    private javax.swing.JButton botao_ok1;
     private javax.swing.JTextField campo_num;
     private javax.swing.JCheckBox check_bubble;
     private javax.swing.JCheckBox check_criaAVL;
@@ -641,7 +654,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JCheckBox check_ordenar;
     private javax.swing.JCheckBox check_quick;
     private javax.swing.JCheckBox check_selection;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Item> combo_busca;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_numElem;
@@ -706,6 +719,7 @@ public class Janela extends javax.swing.JFrame {
     private void liberaResto() {
         check_ordenar.setEnabled(true);
         check_criaArvores.setEnabled(true);
+        combo_busca.setEnabled(true);
     }
 
     private void gerarVetor() {
@@ -790,5 +804,31 @@ public class Janela extends javax.swing.JFrame {
         }
 
         //THREADS ORDENACAO
+    }
+
+    private void liberaBusca() {
+        botao_busca.setEnabled(true);
+    }
+
+    public class Item {
+
+        private String texto;
+        private double valor;
+
+        public Item(String texto, double valor) {
+            this.texto = texto;
+            this.valor = valor;
+        }
+
+        @Override
+        public String toString() {
+            return texto;
+        }
+
+        public double getValor() {
+            return valor;
+        }
+
+       
     }
 }

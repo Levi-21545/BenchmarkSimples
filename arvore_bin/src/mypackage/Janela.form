@@ -69,9 +69,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="label_numElem6" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jComboBox1" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="combo_busca" min="-2" pref="150" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="botao_ok1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botao_busca" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -158,8 +158,8 @@
                   <Group type="103" groupAlignment="2" attributes="0">
                       <Component id="botao_gerar" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
                       <Component id="campo_num" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="botao_ok1" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="botao_busca" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="combo_busca" alignment="2" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -479,31 +479,28 @@
             <Property name="text" type="java.lang.String" value="Buscar elemento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="botao_ok1">
+        <Component class="javax.swing.JButton" name="botao_busca">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_ok1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_buscaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="combo_busca">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Aleat&#xf3;rio"/>
-                <StringItem index="1" value="Menor"/>
-                <StringItem index="2" value="Maior"/>
-                <StringItem index="3" value="Primeiro"/>
-                <StringItem index="4" value="&#xda;ltimo"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combo_buscaActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="combo_busca.addItem(new Item(&quot;Primeiro&quot;, 2));&#xa;combo_busca.addItem(new Item(&quot;&#xda;ltimo&quot;, 3.75));&#xa;combo_busca.addItem(new Item(&quot;Menor&quot;, 3.75));&#xa;combo_busca.addItem(new Item(&quot;Maior&quot;, 3.75));&#xa;combo_busca.addItem(new Item(&quot;N&#xe3;o cont&#xe9;m&quot;, 3.75));"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Item&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
