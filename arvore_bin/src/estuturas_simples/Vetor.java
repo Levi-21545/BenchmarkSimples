@@ -4,6 +4,7 @@ public class Vetor {
 
     double[] vetor;
     int tamanhoVetor;
+    double maior = 0, menor = 1000, nc;
 
     public Vetor(int tamanho) {
 
@@ -15,8 +16,13 @@ public class Vetor {
     public void geraVetor() {
         for (int i = 0; i < vetor.length; i++) {
             double numero = (double) (Math.random() * 1_000);
-            double numeroArredondado = Math.round(numero * 1000.0) / 1000.0; // Arredonda para duas casas decimais
+            double numeroArredondado = Math.round(numero * 1000.0) / 1000.0; // Arredonda para três casas decimais
             vetor[i] = numeroArredondado;
+            if(numeroArredondado<menor){
+                this.menor = numeroArredondado;
+            }else if(numeroArredondado>maior){
+                this.maior = numeroArredondado;
+            }
         }
 
         this.vetor = vetor;
@@ -60,5 +66,16 @@ public class Vetor {
     public double getAleatorio() {
         int aleatorio = (int) (Math.random() * this.vetor.length);
         return vetor[aleatorio];
+    }
+    
+    public double getMenor(){
+        return this.menor;
+    }
+    public double getMaior(){
+        return this.maior;
+    }
+    public double getNaoContem(){
+        this.nc = vetor[(tamanhoVetor/2)]+0.001;
+        return nc;
     }
 }

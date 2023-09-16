@@ -12,12 +12,12 @@ public final class Busca {
     //double[] vetor;
     ArvoreBinaria arvoreBin;
     ArvoreAvl arvoreBal;
-    ArvoreAvlAlt arvoreBalRuim;
+    ArvoreAvlAlt arvoreBalAlt;
     ArvoreBinariaAlt arvoreBinAlt;
     double tempoExecBin;
     double tempoExecBinAlt;
     double tempoExecBal;
-    double tempoExecBalRuim;
+    double tempoExecBalAlt;
 
     public Busca() {
 
@@ -35,13 +35,14 @@ public final class Busca {
         return this.tempoExecBinAlt;
     }
 
-    public double getTempoExecBalRuim() {
-        return this.tempoExecBalRuim;
+    public double getTempoExecBalAlt() {
+        return this.tempoExecBalAlt;
     }
 
     //ARVORE NORMAL
     public void ArvBin(ArvoreBinaria arvore, double numero) {
         this.arvoreBin = arvore;
+        System.out.println("ArvBin buscando: " + numero);
 
         long inicioBusca;
         long fimBusca;
@@ -119,43 +120,42 @@ public final class Busca {
         }
     }
 
-    //ARVORE BALANCEADA RUIM
-    public void ArvBalRuim(ArvoreAvlAlt arvore, double numero) {
-        this.arvoreBalRuim = arvore;
+    public void ArvBalAlt(ArvoreAvlAlt arvore, double numero) {
+        this.arvoreBalAlt = arvore;
 
         long inicioBusca;
         long fimBusca;
 
         inicioBusca = System.nanoTime();
-        buscaRecArvBalRuim(arvoreBalRuim.getRaiz(), numero);
+        buscaRecArvBalAlt(arvoreBalAlt.getRaiz(), numero);
         //System.out.println("Terminou");
         fimBusca = System.nanoTime();
 
         double tempoSort = (double) (fimBusca - inicioBusca) / 1_000_000;
 
-        this.tempoExecBalRuim = tempoSort;
+        this.tempoExecBalAlt = tempoSort;
     }
 
-    public boolean buscaRecArvBalRuim(ArvoreAvlAlt.NoAvlAlt arvore, double numero) {
+    public boolean buscaRecArvBalAlt(ArvoreAvlAlt.NoAvlAlt arvore, double numero) {
         if (arvore == null) {
             System.out.println("Nao achou raiz null");
             return false; // Valor não encontrado
         }
         if (numero == arvore.getChave()) {
-            System.out.println(Cores.GREEN + "Achou AVL Ruim" + Cores.RESET);
+            System.out.println(Cores.GREEN + "Achou AVL Alt" + Cores.RESET);
             return true; // Valor encontrado
         }
 
         if (numero < arvore.getChave()) {
             if (arvore.getEsquerda() != null) {
-                return buscaRecArvBalRuim(arvore.getEsquerda(), numero);
+                return buscaRecArvBalAlt(arvore.getEsquerda(), numero);
             } else {
                 //System.out.println("Nao achou esquerda");
                 return false; // Elemento não encontrado na subárvore esquerda
             }
         } else {
             if (arvore.getDireita() != null) {
-                return buscaRecArvBalRuim(arvore.getDireita(), numero);
+                return buscaRecArvBalAlt(arvore.getDireita(), numero);
             } else {
                 //arvore.getArvoreDireita().pos_ordem();
                 // System.out.println("Nao achou direita");
@@ -164,7 +164,6 @@ public final class Busca {
         }
     }
 
-    //ARVORE BINARIA RUIM
     public void ArvBinAlt(ArvoreBinariaAlt arvore, double numero) {
         this.arvoreBinAlt = arvore;
 
@@ -182,7 +181,7 @@ public final class Busca {
 
     public boolean buscaRecArvBinAlt(ArvoreBinariaAlt arvore, double numero) {
         if (arvore.getRaiz() == null) {
-            System.out.println("Raiz bin ruim null");
+            System.out.println("Raiz bin alt null");
 
             return false; // se arvore vazia
         }
@@ -199,7 +198,7 @@ public final class Busca {
             }
         } // fim laço while
 
-        System.out.println(Cores.GREEN + "Achou Bin Ruim" + Cores.RESET);
+        System.out.println(Cores.GREEN + "Achou Bin Alt" + Cores.RESET);
         return true; // terminou o laço while e ch
     }
 

@@ -73,6 +73,6 @@ class BuscaArvBalRuimThread implements Runnable {
 
     @Override
     public void run() {
-        busca.ArvBalRuim(arvore, n);
+        busca.ArvBalAlt(arvore, n);
     }
 }

@@ -23,7 +23,7 @@ public class Main {
         int tamanho = leitor.nextInt();
 
         //CRIA E ORDENA VETORES
-        Vetor vetor = new Vetor(tamanho);
+        /*Vetor vetor = new Vetor(tamanho);
         Thread geraVetor = new Thread(new geraVetorThread(vetor));
         geraVetor.setName("ThreadGeraVetor");
 
@@ -79,7 +79,7 @@ public class Main {
         bubbleThread.start();
         selectionThread.start();
         insertionThread.start();
-        quickThread.start();*/
+        quickThread.start();
         System.out.println("Deseja ordenar? ");
         int r = leitor.nextInt();
 
@@ -157,9 +157,9 @@ public class Main {
         System.out.printf("%-19s | %14.4f ms | %-17s\n", "Arvore Bin.", busca.getTempoExecBin(), "XXKb");
         System.out.printf("%-19s | %14.4f ms | %-17s\n", "Arvore Bin. Alt", busca.getTempoExecBinAlt(), "XXKb");
         System.out.printf("%-19s | %14.4f ms | %-17s\n", "Arvore Balanc.", busca.getTempoExecBal(), "XXKb");
-        System.out.printf("%-19s | %14.4f ms | %-17s\n", "Arvore Balanc. Ruim", busca.getTempoExecBalRuim(), "XXKb");
+        System.out.printf("%-19s | %14.4f ms | %-17s\n", "Arvore Balanc. Ruim", busca.getTempoExecBalAlt(), "XXKb");
         //System.out.printf("%-19s | %14.4f ms | %-10s | %-17s\n","Arvore P e V", busca.ArvorePretoVermelho(n), "tempo", "XXKb");
-
+         */
     }
 
 }
