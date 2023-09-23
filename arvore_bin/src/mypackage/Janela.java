@@ -18,7 +18,10 @@ import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 
 /**
  *
@@ -43,6 +46,10 @@ public class Janela extends javax.swing.JFrame {
     List<Thread> threadsSort = new ArrayList<>();
     List<Thread> threadsArvore = new ArrayList<>();
     List<Thread> threadsBusca = new ArrayList<>();
+    
+    DefaultTableModel modeloOrdenacao = null;
+    DefaultTableModel modeloCriaArvore = null;
+    DefaultTableModel modeloBusca = null;
 
     Vetor vetor = null;
     Thread geraVetor = null;
@@ -59,11 +66,15 @@ public class Janela extends javax.swing.JFrame {
 
     Busca busca = null;
     double valorBusca = 0;
+    Item selectedBusca = null;
+
+    boolean proc_multi = false;
 
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupo_combo_proc = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         botaoIniciar = new javax.swing.JButton();
         check_ordenar = new javax.swing.JCheckBox();
@@ -93,6 +104,11 @@ public class Janela extends javax.swing.JFrame {
         label_numElem6 = new javax.swing.JLabel();
         botao_busca = new javax.swing.JButton();
         combo_busca = new javax.swing.JComboBox<>();
+        radio_lote = new javax.swing.JRadioButton();
+        radio_multi = new javax.swing.JRadioButton();
+        botao_limpaSort = new javax.swing.JButton();
+        botao_limpaCria = new javax.swing.JButton();
+        botao_limpaBusca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -221,6 +237,15 @@ public class Janela extends javax.swing.JFrame {
             }
         ));
         scroll_sort.setViewportView(tabela_ordenacao);
+        TableColumnModel columnModelOrd = tabela_ordenacao.getColumnModel();
+        TableColumn coluna1O = columnModelOrd.getColumn(0);
+        coluna1O.setPreferredWidth(40);
+
+        DefaultTableCellRenderer rightRendererO = new DefaultTableCellRenderer();
+        rightRendererO.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
+
+        TableColumn coluna3O = columnModelOrd.getColumn(2);
+        coluna3O.setCellRenderer(rightRendererO);;
 
         label_numElem4.setText("Criação da árvore:");
 
@@ -236,6 +261,15 @@ public class Janela extends javax.swing.JFrame {
             tabela_criaArv.getColumnModel().getColumn(0).setHeaderValue("Title 1");
             tabela_criaArv.getColumnModel().getColumn(1).setHeaderValue("Title 2");
         }
+        TableColumnModel columnModelArv = tabela_criaArv.getColumnModel();
+        TableColumn coluna1A = columnModelArv.getColumn(0);
+        coluna1A.setPreferredWidth(50);
+
+        DefaultTableCellRenderer rightRendererA = new DefaultTableCellRenderer();
+        rightRendererA.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
+
+        TableColumn coluna3A = columnModelArv.getColumn(2);
+        coluna3A.setCellRenderer(rightRendererA);;
 
         label_numElem5.setText("Busca na árvore:");
 
@@ -243,10 +277,19 @@ public class Janela extends javax.swing.JFrame {
             new Object [][] {
             },
             new String [] {
-                "Quant", "Tipo", "Tempo"
+                "Posição", "Tipo", "Tempo"
             }
         ));
         scroll_busca.setViewportView(tabela_buscaArv);
+        TableColumnModel columnModelBusca = tabela_buscaArv.getColumnModel();
+        TableColumn coluna1 = columnModelBusca.getColumn(0);
+        coluna1.setPreferredWidth(50);
+
+        DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();
+        rightRenderer.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);
+
+        TableColumn coluna3 = columnModelBusca.getColumn(2);
+        coluna3.setCellRenderer(rightRenderer);;
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -272,6 +315,34 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
+        grupo_combo_proc.add(radio_lote);
+        radio_lote.setSelected(true);
+        radio_lote.setText("Lote");
+
+        grupo_combo_proc.add(radio_multi);
+        radio_multi.setText("Multiprogramação");
+
+        botao_limpaSort.setText("Limpar");
+        botao_limpaSort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_limpaSortActionPerformed(evt);
+            }
+        });
+
+        botao_limpaCria.setText("Limpar");
+        botao_limpaCria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_limpaCriaActionPerformed(evt);
+            }
+        });
+
+        botao_limpaBusca.setText("Limpar");
+        botao_limpaBusca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_limpaBuscaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -279,12 +350,6 @@ public class Janela extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(scroll_cria, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addComponent(scroll_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,21 +375,27 @@ public class Janela extends javax.swing.JFrame {
                                                 .addComponent(check_bubble, javax.swing.GroupLayout.Alignment.CENTER)))
                                         .addGap(18, 18, 18)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(check_quick)
-                                            .addComponent(check_selection))
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(check_criaArvores)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(check_criaAVL)
-                                                    .addComponent(check_criaBin))
+                                                    .addComponent(check_quick)
+                                                    .addComponent(check_selection))
+                                                .addGap(23, 23, 23)
+                                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(check_criaAVLAlt)
-                                                    .addComponent(check_criaBinAlt)))))
+                                                    .addComponent(check_criaArvores)
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(check_criaAVL)
+                                                            .addComponent(check_criaBin))
+                                                        .addGap(18, 18, 18)
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(check_criaAVLAlt)
+                                                            .addComponent(check_criaBinAlt)))))
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(radio_lote)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(radio_multi))))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(label_numElem1)
                                         .addGap(255, 255, 255)
@@ -334,8 +405,20 @@ public class Janela extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(botaoIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(barraProgresso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botao_limpaSort))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botao_limpaCria)
+                            .addComponent(scroll_cria, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botao_limpaBusca)
+                            .addComponent(scroll_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
@@ -377,11 +460,14 @@ public class Janela extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(check_criaAVL)))))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(botaoIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barraProgresso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botaoIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(radio_lote)
+                        .addComponent(radio_multi)))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(label_numElem4)
@@ -396,7 +482,13 @@ public class Janela extends javax.swing.JFrame {
                             .addComponent(label_numElem1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(botao_limpaSort)
+                        .addComponent(botao_limpaCria))
+                    .addComponent(botao_limpaBusca))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -438,104 +530,216 @@ public class Janela extends javax.swing.JFrame {
 
         verificaOrdenar();
         verificaArvores();
+        verificaProc();
 
         int numThreads = threadsSort.size() + threadsArvore.size();
         int progressoTotal = 0, cont = 1;
         barraProgresso.setValue(progressoTotal);
 
-        for (int i = 0; i < threadsSort.size(); i++) {
-            Thread sort = threadsSort.get(i);
-            System.out.println(sort);
-            sort.start();
-            try {
-                sort.join();
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
+        if (proc_multi) {
+            for (int i = 0; i < threadsSort.size(); i++) {
+                Thread sort = threadsSort.get(i);
+                System.out.println(sort);
+                sort.start();
             }
 
-            double tempoExec;
-            String nome = null, tempo = null, quant = null;
+            for (int i = 0; i < threadsSort.size(); i++) {
+                Thread sort = threadsSort.get(i);
 
-            switch (sort.getName()) {
-                case "ThreadBubble":
-                    nome = "Bubble Sort";
-                    tempo = String.valueOf(bubble.getTempoExecucao()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-                case "ThreadSelection":
-                    nome = "Selection Sort";
-                    tempo = String.valueOf(selection.getTempoExecucao()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-                case "ThreadInsertion":
-                    nome = "Insertion Sort";
-                    tempo = String.valueOf(insertion.getTempoExecucao()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-                case "ThreadQuick":
-                    nome = "Quick Sort";
-                    tempo = String.valueOf(quick.getTempoExecucao()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
+                try {
+                    sort.join();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+
+                double tempoExec;
+                String nome = null, tempo = null, quant = null;
+
+                switch (sort.getName()) {
+                    case "ThreadBubble":
+                        nome = "Bubble Sort";
+                        tempo = String.valueOf(bubble.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadSelection":
+                        nome = "Selection Sort";
+                        tempo = String.valueOf(selection.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadInsertion":
+                        nome = "Insertion Sort";
+                        tempo = String.valueOf(insertion.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadQuick":
+                        nome = "Quick Sort";
+                        tempo = String.valueOf(quick.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                }
+                
+                modeloOrdenacao = (DefaultTableModel) tabela_ordenacao.getModel();
+                modeloOrdenacao.addRow(new Object[]{quant, nome, tempo});
+
+                JScrollBar verticalScrollBar = scroll_sort.getVerticalScrollBar();
+                verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+
+                cont++;
+
+                progressoTotal += 100 / numThreads;
+                barraProgresso.setValue(progressoTotal);
             }
-            DefaultTableModel modeloOrdenacao = (DefaultTableModel) tabela_ordenacao.getModel();
-            modeloOrdenacao.addRow(new Object[]{quant, nome, tempo});
 
-            JScrollBar verticalScrollBar = scroll_sort.getVerticalScrollBar();
-            verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+            for (int i = 0; i < threadsArvore.size(); i++) {
+                Thread arvore = threadsArvore.get(i);
+                System.out.println(arvore);
+                arvore.start();
+            }
 
-            cont++;
+            for (int i = 0; i < threadsArvore.size(); i++) {
+                Thread arvore = threadsArvore.get(i);
+                System.out.println(arvore);
 
-            progressoTotal += 100 / numThreads;
-            barraProgresso.setValue(progressoTotal);
+                try {
+                    arvore.join();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+
+                double tempoExec;
+                String nome = null, tempo = null, quant = null;
+
+                switch (arvore.getName()) {
+                    case "ThreadCriaArvBin":
+                        nome = "Binaria";
+                        tempo = String.valueOf(arvoreBin.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadCriaArvBinAlt":
+                        nome = "Binaria Alt";
+                        tempo = String.valueOf(arvoreBinAlt.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadCriaArvBal":
+                        nome = "Balanceada";
+                        tempo = String.valueOf(arvoreBal.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadCriaArvBalAlt":
+                        nome = "Balanceada Alt ";
+                        tempo = String.valueOf(arvoreBalAlt.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                }
+                modeloCriaArvore = (DefaultTableModel) tabela_criaArv.getModel();
+                modeloCriaArvore.addRow(new Object[]{quant, nome, tempo});
+
+                JScrollBar verticalScrollBar = scroll_cria.getVerticalScrollBar();
+                verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+
+                cont++;
+
+                progressoTotal += 100 / numThreads;
+                barraProgresso.setValue(progressoTotal);
+            }
+        } else if (!proc_multi) {
+            for (int i = 0; i < threadsSort.size(); i++) {
+                Thread sort = threadsSort.get(i);
+                System.out.println(sort);
+
+                sort.start();
+                try {
+                    sort.join();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+
+                double tempoExec;
+                String nome = null, tempo = null, quant = null;
+
+                switch (sort.getName()) {
+                    case "ThreadBubble":
+                        nome = "Bubble Sort";
+                        tempo = String.valueOf(bubble.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadSelection":
+                        nome = "Selection Sort";
+                        tempo = String.valueOf(selection.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadInsertion":
+                        nome = "Insertion Sort";
+                        tempo = String.valueOf(insertion.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadQuick":
+                        nome = "Quick Sort";
+                        tempo = String.valueOf(quick.getTempoExecucao()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                }
+                modeloOrdenacao = (DefaultTableModel) tabela_ordenacao.getModel();
+                modeloOrdenacao.addRow(new Object[]{quant, nome, tempo});
+
+                JScrollBar verticalScrollBar = scroll_sort.getVerticalScrollBar();
+                verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+
+                cont++;
+
+                progressoTotal += 100 / numThreads;
+                barraProgresso.setValue(progressoTotal);
+            }
+
+            for (int i = 0; i < threadsArvore.size(); i++) {
+                Thread arvore = threadsArvore.get(i);
+                System.out.println(arvore);
+                arvore.start();
+                try {
+                    arvore.join();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }
+
+                double tempoExec;
+                String nome = null, tempo = null, quant = null;
+
+                switch (arvore.getName()) {
+                    case "ThreadCriaArvBin":
+                        nome = "Binaria";
+                        tempo = String.valueOf(arvoreBin.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadCriaArvBinAlt":
+                        nome = "Binaria Alt";
+                        tempo = String.valueOf(arvoreBinAlt.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadCriaArvBal":
+                        nome = "Balanceada";
+                        tempo = String.valueOf(arvoreBal.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                    case "ThreadCriaArvBalAlt":
+                        nome = "Balanceada Alt ";
+                        tempo = String.valueOf(arvoreBalAlt.getTempoCria()) + " ms";
+                        quant = String.valueOf(vetor.getTamanho());
+                        break;
+                }
+                modeloCriaArvore = (DefaultTableModel) tabela_criaArv.getModel();
+                modeloCriaArvore.addRow(new Object[]{quant, nome, tempo});
+
+                JScrollBar verticalScrollBar = scroll_cria.getVerticalScrollBar();
+                verticalScrollBar.setValue(verticalScrollBar.getMaximum());
+
+                cont++;
+
+                progressoTotal += 100 / numThreads;
+                barraProgresso.setValue(progressoTotal);
+            }
         }
 
-        for (int i = 0; i < threadsArvore.size(); i++) {
-            Thread arvore = threadsArvore.get(i);
-            System.out.println(arvore);
-            arvore.start();
-            try {
-                arvore.join();
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
 
-            double tempoExec;
-            String nome = null, tempo = null, quant = null;
-
-            switch (arvore.getName()) {
-                case "ThreadCriaArvBin":
-                    nome = "Binaria";
-                    tempo = String.valueOf(arvoreBin.getTempoCria()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-                case "ThreadCriaArvBinAlt":
-                    nome = "Binaria Alt";
-                    tempo = String.valueOf(arvoreBinAlt.getTempoCria()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-                case "ThreadCriaArvBal":
-                    nome = "Balanceada";
-                    tempo = String.valueOf(arvoreBal.getTempoCria()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-                case "ThreadCriaArvBalAlt":
-                    nome = "Balanceada Alt ";
-                    tempo = String.valueOf(arvoreBalAlt.getTempoCria()) + " ms";
-                    quant = String.valueOf(vetor.getTamanho());
-                    break;
-            }
-            DefaultTableModel modeloCriaArvore = (DefaultTableModel) tabela_criaArv.getModel();
-            modeloCriaArvore.addRow(new Object[]{quant, nome, tempo});
-
-            JScrollBar verticalScrollBar = scroll_cria.getVerticalScrollBar();
-            verticalScrollBar.setValue(verticalScrollBar.getMaximum());
-
-            cont++;
-
-            progressoTotal += 100 / numThreads;
-            barraProgresso.setValue(progressoTotal);
-        }
     }//GEN-LAST:event_botaoIniciarActionPerformed
 
     private void check_criaArvoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaArvoresActionPerformed
@@ -552,7 +756,7 @@ public class Janela extends javax.swing.JFrame {
     private void botao_gerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_gerarActionPerformed
         gerarVetor();
         liberaResto();
-        vetor.imprimeVetor();
+        //vetor.imprimeVetor();
 
         bubble = new Sort(vetor);
         selection = new Sort(vetor);
@@ -611,8 +815,8 @@ public class Janela extends javax.swing.JFrame {
                     tempo = String.valueOf(busca.getTempoExecBalAlt()) + " ms";
                     break;
             }
-            DefaultTableModel modeloBusca = (DefaultTableModel) tabela_buscaArv.getModel();
-            modeloBusca.addRow(new Object[]{nome, tempo});
+            modeloBusca = (DefaultTableModel) tabela_buscaArv.getModel();
+            modeloBusca.addRow(new Object[]{selectedBusca.texto, nome, tempo});
 
             JScrollBar verticalScrollBar = scroll_busca.getVerticalScrollBar();
             verticalScrollBar.setValue(verticalScrollBar.getMaximum());
@@ -622,25 +826,25 @@ public class Janela extends javax.swing.JFrame {
 
 
     private void combo_buscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_buscaActionPerformed
-        Item selectedItem = (Item) combo_busca.getSelectedItem();
+        selectedBusca = (Item) combo_busca.getSelectedItem();
 
-        if (selectedItem.texto == "Primeiro") {
+        if (selectedBusca.texto == "Primeiro") {
             //selectedItem.setValor(vetor.getValor(0));
             valorBusca = vetor.getValor(0);
             System.out.println(valorBusca);
-        } else if (selectedItem.texto == "Último") {
+        } else if (selectedBusca.texto == "Último") {
             //selectedItem.setValor(vetor.getValor(0));
             valorBusca = vetor.getValor(vetor.getTamanho() - 1);
             System.out.println(valorBusca);
-        } else if (selectedItem.texto == "Menor") {
+        } else if (selectedBusca.texto == "Menor") {
             //selectedItem.setValor(vetor.getValor(0));
             valorBusca = vetor.getMenor();
             System.out.println(valorBusca);
-        } else if (selectedItem.texto == "Maior") {
+        } else if (selectedBusca.texto == "Maior") {
             //selectedItem.setValor(vetor.getValor(0));
             valorBusca = vetor.getMaior();
             System.out.println(valorBusca);
-        } else if (selectedItem.texto == "Nao possui") {
+        } else if (selectedBusca.texto == "Nao possui") {
             //selectedItem.setValor(vetor.getValor(0));
             valorBusca = vetor.getNaoContem();
             System.out.println(valorBusca);
@@ -674,6 +878,18 @@ public class Janela extends javax.swing.JFrame {
     private void check_criaAVLAltActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_check_criaAVLAltActionPerformed
 
     }//GEN-LAST:event_check_criaAVLAltActionPerformed
+
+    private void botao_limpaSortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limpaSortActionPerformed
+        modeloOrdenacao.setRowCount(0);
+    }//GEN-LAST:event_botao_limpaSortActionPerformed
+
+    private void botao_limpaCriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limpaCriaActionPerformed
+        modeloCriaArvore.setRowCount(0);
+    }//GEN-LAST:event_botao_limpaCriaActionPerformed
+
+    private void botao_limpaBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limpaBuscaActionPerformed
+        modeloBusca.setRowCount(0);
+    }//GEN-LAST:event_botao_limpaBuscaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -716,6 +932,9 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JButton botaoIniciar;
     private javax.swing.JButton botao_busca;
     private javax.swing.JButton botao_gerar;
+    private javax.swing.JButton botao_limpaBusca;
+    private javax.swing.JButton botao_limpaCria;
+    private javax.swing.JButton botao_limpaSort;
     private javax.swing.JTextField campo_num;
     private javax.swing.JCheckBox check_bubble;
     private javax.swing.JCheckBox check_criaAVL;
@@ -728,6 +947,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JCheckBox check_quick;
     private javax.swing.JCheckBox check_selection;
     private javax.swing.JComboBox<Item> combo_busca;
+    private javax.swing.ButtonGroup grupo_combo_proc;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_numElem;
@@ -735,6 +955,8 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel label_numElem4;
     private javax.swing.JLabel label_numElem5;
     private javax.swing.JLabel label_numElem6;
+    private javax.swing.JRadioButton radio_lote;
+    private javax.swing.JRadioButton radio_multi;
     private javax.swing.JScrollPane scroll_busca;
     private javax.swing.JScrollPane scroll_cria;
     private javax.swing.JScrollPane scroll_sort;
@@ -889,6 +1111,14 @@ public class Janela extends javax.swing.JFrame {
 
     private void liberaBusca() {
         botao_busca.setEnabled(true);
+    }
+
+    private void verificaProc() {
+        if (radio_lote.isSelected()) {
+            proc_multi = false;
+        } else if (radio_multi.isSelected()) {
+            proc_multi = true;
+        }
     }
 
     public class Item {

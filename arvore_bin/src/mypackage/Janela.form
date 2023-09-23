@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="grupo_combo_proc">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -58,20 +62,13 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="scroll_sort" min="-2" pref="300" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="scroll_cria" min="-2" pref="300" max="-2" attributes="0"/>
-                          <EmptySpace pref="15" max="32767" attributes="0"/>
-                          <Component id="scroll_busca" min="-2" pref="300" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="campo_num" min="-2" pref="150" max="-2" attributes="0"/>
@@ -98,24 +95,33 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="check_quick" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="check_selection" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Component id="jSeparator1" min="-2" pref="21" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="check_criaArvores" min="-2" max="-2" attributes="0"/>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="check_criaAVL" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="check_criaBin" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="check_quick" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="check_selection" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                                  <Component id="jSeparator1" min="-2" pref="21" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="check_criaAVLAlt" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="check_criaBinAlt" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="check_criaArvores" min="-2" max="-2" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="check_criaAVL" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="check_criaBin" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="check_criaAVLAlt" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="check_criaBinAlt" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                      </Group>
                                                   </Group>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="radio_lote" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="radio_multi" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -129,11 +135,27 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <Component id="botaoIniciar" min="-2" pref="86" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="barraProgresso" max="32767" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="barraProgresso" min="-2" pref="580" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="scroll_sort" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="botao_limpaSort" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="botao_limpaCria" min="-2" max="-2" attributes="0"/>
+                              <Component id="scroll_cria" min="-2" pref="300" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="botao_limpaBusca" min="-2" max="-2" attributes="0"/>
+                              <Component id="scroll_busca" min="-2" pref="300" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -192,20 +214,24 @@
                       </Group>
                       <Component id="jSeparator1" min="-2" pref="78" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="botaoIniciar" max="32767" attributes="0"/>
+                  <EmptySpace pref="28" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="barraProgresso" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botaoIniciar" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                          <Component id="radio_lote" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="radio_multi" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="label_numElem4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="scroll_cria" min="-2" pref="290" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="label_numElem5" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="scroll_busca" pref="0" max="32767" attributes="0"/>
@@ -217,7 +243,15 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="54" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="botao_limpaSort" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botao_limpaCria" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="botao_limpaBusca" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -365,7 +399,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Quant&quot;, &quot;Tipo&quot;, &quot;Tempo&quot;&#xa;    }&#xa;)" type="code"/>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelOrd = tabela_ordenacao.getColumnModel();&#xa;TableColumn coluna1O = columnModelOrd.getColumn(0);&#xa;coluna1O.setPreferredWidth(40);&#xa;&#xa;DefaultTableCellRenderer rightRendererO = new DefaultTableCellRenderer();&#xa;rightRendererO.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;TableColumn coluna3O = columnModelOrd.getColumn(2);&#xa;coluna3O.setCellRenderer(rightRendererO);;">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
@@ -403,7 +437,7 @@
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                   <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Quant&quot;, &quot;Tipo&quot;, &quot;Tempo&quot;&#xa;    }&#xa;)" type="code"/>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelArv = tabela_criaArv.getColumnModel();&#xa;TableColumn coluna1A = columnModelArv.getColumn(0);&#xa;coluna1A.setPreferredWidth(50);&#xa;&#xa;DefaultTableCellRenderer rightRendererA = new DefaultTableCellRenderer();&#xa;rightRendererA.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;TableColumn coluna3A = columnModelArv.getColumn(2);&#xa;coluna3A.setCellRenderer(rightRendererA);;">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title value="Title 1"/>
@@ -439,9 +473,9 @@
             <Component class="javax.swing.JTable" name="tabela_buscaArv">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Quant&quot;, &quot;Tipo&quot;, &quot;Tempo&quot;&#xa;    }&#xa;)" type="code"/>
+                  <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Posi&#xe7;&#xe3;o&quot;, &quot;Tipo&quot;, &quot;Tempo&quot;&#xa;    }&#xa;)" type="code"/>
                 </Property>
-                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelBusca = tabela_buscaArv.getColumnModel();&#xa;TableColumn coluna1 = columnModelBusca.getColumn(0);&#xa;coluna1.setPreferredWidth(50);&#xa;&#xa;DefaultTableCellRenderer rightRenderer = new DefaultTableCellRenderer();&#xa;rightRenderer.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;TableColumn coluna3 = columnModelBusca.getColumn(2);&#xa;coluna3.setCellRenderer(rightRenderer);;">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
@@ -497,6 +531,47 @@
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="combo_busca.addItem(new Item(0, &quot;Primeiro&quot;, 0));&#xa;combo_busca.addItem(new Item(0, &quot;&#xda;ltimo&quot;, 0));&#xa;combo_busca.addItem(new Item(0, &quot;Menor&quot;, 0));&#xa;combo_busca.addItem(new Item(0, &quot;Maior&quot;, 0));&#xa;combo_busca.addItem(new Item(0, &quot;Nao possui&quot;, 0));"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Item&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="radio_lote">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="grupo_combo_proc"/>
+            </Property>
+            <Property name="selected" type="boolean" value="true"/>
+            <Property name="text" type="java.lang.String" value="Lote"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="radio_multi">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="grupo_combo_proc"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Multiprograma&#xe7;&#xe3;o"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="botao_limpaSort">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_limpaSortActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botao_limpaCria">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_limpaCriaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botao_limpaBusca">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Limpar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_limpaBuscaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
