@@ -46,7 +46,7 @@ public class Janela extends javax.swing.JFrame {
     List<Thread> threadsSort = new ArrayList<>();
     List<Thread> threadsArvore = new ArrayList<>();
     List<Thread> threadsBusca = new ArrayList<>();
-    
+
     DefaultTableModel modeloOrdenacao = null;
     DefaultTableModel modeloCriaArvore = null;
     DefaultTableModel modeloBusca = null;
@@ -577,7 +577,7 @@ public class Janela extends javax.swing.JFrame {
                         quant = String.valueOf(vetor.getTamanho());
                         break;
                 }
-                
+
                 modeloOrdenacao = (DefaultTableModel) tabela_ordenacao.getModel();
                 modeloOrdenacao.addRow(new Object[]{quant, nome, tempo});
 
@@ -1090,18 +1090,17 @@ public class Janela extends javax.swing.JFrame {
 
         }
 
-        if (check_criaAVLAlt.isSelected()) {
-            Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
-            criaArvBalAlt.setName("ThreadCriaArvBalAlt");
-            threadsArvore.add(criaArvBalAlt);
-            botao_busca.setEnabled(true);
-
-        }
-
         if (check_criaAVL.isSelected()) {
             Thread criaArvBal = new Thread(new criaArvBalThread(arvoreBal, vetor));
             criaArvBal.setName("ThreadCriaArvBal");
             threadsArvore.add(criaArvBal);
+            botao_busca.setEnabled(true);
+        }
+
+        if (check_criaAVLAlt.isSelected()) {
+            Thread criaArvBalAlt = new Thread(new criaArvBalRuimThread(arvoreBalAlt, vetor));
+            criaArvBalAlt.setName("ThreadCriaArvBalAlt");
+            threadsArvore.add(criaArvBalAlt);
             botao_busca.setEnabled(true);
 
         }

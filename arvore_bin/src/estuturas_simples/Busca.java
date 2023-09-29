@@ -42,7 +42,7 @@ public final class Busca {
     //ARVORE NORMAL
     public void ArvBin(ArvoreBinaria arvore, double numero) {
         this.arvoreBin = arvore;
-        System.out.println("ArvBin buscando: " + numero);
+        //System.out.println("ArvBin buscando: " + numero);
 
         long inicioBusca;
         long fimBusca;
@@ -64,7 +64,7 @@ public final class Busca {
         }
 
         if (numero == arvore.getRaiz().getDado().getValor()) {
-            System.out.println(Cores.GREEN + "Achou Bmain" + Cores.RESET);
+            System.out.println(Cores.GREEN + "Achou Bin" + Cores.RESET);
             return true; // Valor encontrado
         }
 
@@ -172,6 +172,7 @@ public final class Busca {
 
         inicioBusca = System.nanoTime();
         buscaRecArvBinAlt(arvoreBinAlt, numero);
+        //System.out.println("Terminou balalt");
         fimBusca = System.nanoTime();
 
         double tempoSort = (double) (fimBusca - inicioBusca) / 1_000_000;
@@ -196,7 +197,7 @@ public final class Busca {
 
                 return false; // encontrou uma folha -> sai
             }
-        } // fim laço while
+        }
 
         System.out.println(Cores.GREEN + "Achou Bin Alt" + Cores.RESET);
         return true; // terminou o laço while e ch
