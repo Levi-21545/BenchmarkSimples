@@ -1,14 +1,19 @@
 package estuturas_simples;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Sort {
 
     double[] vetor;
     double tempoExecucao;
+    boolean registrar;
+    public List<String> registros = new ArrayList();
 
     public Sort(Vetor vetor) {
 
         this.vetor = vetor.getVetor();
-
+        this.registrar = false;
     }
 
     public double getTempoExecucao() {
@@ -17,6 +22,10 @@ public class Sort {
 
     public void setTempoExecucao(double tempoExec) {
         this.tempoExecucao = tempoExec;
+    }
+
+    public void setRegistrar(boolean registrar) {
+        this.registrar = registrar;
     }
 
     public void imprimeVetor() {
@@ -28,21 +37,37 @@ public class Sort {
 
     //BUBBLE SORT
     public void ordenaBubble() {
-        long inicioSort;
-        long fimSort;
+        long inicioSort = 0;
+        long fimSort = 0;
+        registros.clear();
 
-        inicioSort = System.nanoTime();
-        for (int t = 0; t < vetor.length; t++) {
-            for (int i = 0; i < (vetor.length - 1); i++) {
-                if (vetor[i] > vetor[i + 1]) {
-                    double r = vetor[i];
-                    vetor[i] = vetor[i + 1];
-                    vetor[i + 1] = r;
+        if (registrar == true) {
+            for (int t = 0; t < vetor.length; t++) {
+                for (int i = 0; i < (vetor.length - 1); i++) {
+                    registraPasso();
+
+                    if (vetor[i] > vetor[i + 1]) {
+                        double r = vetor[i];
+                        vetor[i] = vetor[i + 1];
+                        vetor[i + 1] = r;
+                    }
                 }
             }
+            System.out.println("Sort: Ordenou Bubble");
+        } else {
+            inicioSort = System.nanoTime();
+            for (int t = 0; t < vetor.length; t++) {
+                for (int i = 0; i < (vetor.length - 1); i++) {
+                    if (vetor[i] > vetor[i + 1]) {
+                        double r = vetor[i];
+                        vetor[i] = vetor[i + 1];
+                        vetor[i + 1] = r;
+                    }
+                }
+            }
+            fimSort = System.nanoTime();
+            System.out.println("Sort: Ordenou Bubble");
         }
-        fimSort = System.nanoTime();
-        System.out.println("Sort: Ordenou Bubble");
 
         double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
 
@@ -150,4 +175,28 @@ public class Sort {
         return f;
     }
 
+    private void registraPasso() {
+        // Converte o vetor em uma string
+        StringBuilder values = new StringBuilder("{");
+        for (int i = 0; i < vetor.length; i++) {
+            int numero = (int) vetor[i];
+            //double numeroArredondado = Math.round(numero * 1.0) / 1.0;
+
+            values.append(numero);
+            if (i < vetor.length - 1) {
+                values.append(", ");
+            }
+        }
+        values.append("}");
+
+        // Adiciona a string à lista de registros
+        try {
+            if (!registros.get(registros.size() - 1).equals(values.toString())) {
+                registros.add(values.toString());
+            }
+        } catch (IndexOutOfBoundsException e) {
+            registros.add(values.toString());
+        }
+
+    }
 }
