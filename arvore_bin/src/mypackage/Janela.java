@@ -108,7 +108,7 @@ public class Janela extends javax.swing.JFrame {
         radio_lote = new javax.swing.JRadioButton();
         radio_multi = new javax.swing.JRadioButton();
         tab = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        painel_tempoexec = new javax.swing.JPanel();
         label_numElem4 = new javax.swing.JLabel();
         scroll_cria = new javax.swing.JScrollPane();
         tabela_criaArv = new javax.swing.JTable();
@@ -121,12 +121,12 @@ public class Janela extends javax.swing.JFrame {
         label_numElem1 = new javax.swing.JLabel();
         scroll_sort = new javax.swing.JScrollPane();
         tabela_ordenacao = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
+        painel_visual = new javax.swing.JPanel();
         label_numElem2 = new javax.swing.JLabel();
-        scroll_sort1 = new javax.swing.JScrollPane();
+        scroll_visual = new javax.swing.JScrollPane();
         tabela_visualOrdenacao = new javax.swing.JTable();
-        botao_limpaManIndex = new javax.swing.JButton();
-        scroll_busca1 = new javax.swing.JScrollPane();
+        botao_limpaVisual = new javax.swing.JButton();
+        scroll_buscaPap = new javax.swing.JScrollPane();
         tabela_pap = new javax.swing.JTable();
         label_numElem8 = new javax.swing.JLabel();
         botao_limpaPap = new javax.swing.JButton();
@@ -379,60 +379,60 @@ public class Janela extends javax.swing.JFrame {
         TableColumn coluna3O = columnModelOrd.getColumn(2);
         coluna3O.setCellRenderer(rightRendererO);;
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout painel_tempoexecLayout = new javax.swing.GroupLayout(painel_tempoexec);
+        painel_tempoexec.setLayout(painel_tempoexecLayout);
+        painel_tempoexecLayout.setHorizontalGroup(
+            painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_tempoexecLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botao_limpaSort)
                     .addComponent(label_numElem1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scroll_cria, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_numElem4)
                     .addComponent(botao_limpaCria))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botao_limpaBusca)
                     .addComponent(scroll_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_numElem5))
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        painel_tempoexecLayout.setVerticalGroup(
+            painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_tempoexecLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painel_tempoexecLayout.createSequentialGroup()
                         .addComponent(label_numElem4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scroll_cria, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(painel_tempoexecLayout.createSequentialGroup()
                             .addComponent(label_numElem5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(scroll_busca, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_tempoexecLayout.createSequentialGroup()
                             .addComponent(label_numElem1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(scroll_sort, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botao_limpaSort)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(painel_tempoexecLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(botao_limpaBusca)
                         .addComponent(botao_limpaCria)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        tab.addTab("Tempo de Execução", jPanel2);
+        tab.addTab("Tempo de Execução", painel_tempoexec);
 
         label_numElem2.setText("Manipulação de índices:");
 
-        scroll_sort1.setViewportView(null);
+        scroll_visual.setViewportView(null);
 
         tabela_visualOrdenacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -441,14 +441,17 @@ public class Janela extends javax.swing.JFrame {
                 "Posição", "Valor"
             }
         ));
-        scroll_sort1.setViewportView(tabela_visualOrdenacao);
+        scroll_visual.setViewportView(tabela_visualOrdenacao);
 
-        botao_limpaManIndex.setText("Limpar");
-        botao_limpaManIndex.addActionListener(new java.awt.event.ActionListener() {
+        botao_limpaVisual.setText("Limpar");
+        botao_limpaVisual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botao_limpaManIndexActionPerformed(evt);
+                botao_limpaVisualActionPerformed(evt);
             }
         });
+
+        scroll_buscaPap.setToolTipText("");
+        scroll_buscaPap.setRowHeaderView(null);
 
         tabela_pap.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -457,9 +460,11 @@ public class Janela extends javax.swing.JFrame {
                 "Iteração", "Valores"
             }
         ));
-        scroll_busca1.setViewportView(tabela_pap);
+        tabela_pap.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
+        scroll_buscaPap.setViewportView(tabela_pap);
         TableColumnModel columnModelPap = tabela_pap.getColumnModel();
         TableColumn coluna1Pap = columnModelPap.getColumn(0);
+        coluna1Pap.setPreferredWidth(60);
 
         DefaultTableCellRenderer rendererPap = new DefaultTableCellRenderer();
         rendererPap.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
@@ -526,63 +531,63 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout painel_visualLayout = new javax.swing.GroupLayout(painel_visual);
+        painel_visual.setLayout(painel_visualLayout);
+        painel_visualLayout.setHorizontalGroup(
+            painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_visualLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painel_visualLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel4)
                         .addGap(59, 59, 59))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painel_visualLayout.createSequentialGroup()
+                        .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(slider_velocidade, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(painel_visualLayout.createSequentialGroup()
+                                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(radio_insertion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(radio_bubble, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(radio_selection, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(radio_quick, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addGroup(painel_visualLayout.createSequentialGroup()
                                 .addGap(11, 11, 11)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botao_demonstrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)))
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_sort1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botao_limpaManIndex)
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scroll_visual, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botao_limpaVisual)
                     .addComponent(label_numElem2))
                 .addGap(8, 8, 8)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label_numElem8)
                     .addComponent(botao_limpaPap)
-                    .addComponent(scroll_busca1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scroll_buscaPap, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        painel_visualLayout.setVerticalGroup(
+            painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painel_visualLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(label_numElem2)
                     .addComponent(label_numElem8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(scroll_busca1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(scroll_sort1, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(scroll_buscaPap, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(scroll_visual, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                    .addGroup(painel_visualLayout.createSequentialGroup()
+                        .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(radio_bubble)
                             .addComponent(radio_selection))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(radio_insertion)
                             .addComponent(radio_quick))
                         .addGap(18, 18, 18)
@@ -590,19 +595,19 @@ public class Janela extends javax.swing.JFrame {
                         .addGap(7, 7, 7)
                         .addComponent(slider_velocidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(5, 5, 5)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addComponent(botao_demonstrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botao_limpaManIndex)
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botao_limpaVisual)
                     .addComponent(botao_limpaPap))
                 .addGap(19, 19, 19))
         );
 
-        tab.addTab("Representação Visual", jPanel3);
+        tab.addTab("Representação Visual", painel_visual);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -774,6 +779,7 @@ public class Janela extends javax.swing.JFrame {
 
                 double tempoExec;
                 String nome = null, tempo = null, quant = null;
+                
 
                 switch (sort.getName()) {
                     case "ThreadBubble":
@@ -1116,9 +1122,9 @@ public class Janela extends javax.swing.JFrame {
         modeloOrdenacao.setRowCount(0);
     }//GEN-LAST:event_botao_limpaSortActionPerformed
 
-    private void botao_limpaManIndexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limpaManIndexActionPerformed
+    private void botao_limpaVisualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limpaVisualActionPerformed
         modeloVisualOrdenacao.setRowCount(0);
-    }//GEN-LAST:event_botao_limpaManIndexActionPerformed
+    }//GEN-LAST:event_botao_limpaVisualActionPerformed
 
     private void botao_limpaPapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_limpaPapActionPerformed
         modeloPapOrdenacao.setRowCount(0);
@@ -1178,37 +1184,133 @@ public class Janela extends javax.swing.JFrame {
             return;
         }
 
-        Enumeration<AbstractButton> buttons = grupo_combo_pap.getElements();
-        while (buttons.hasMoreElements()) {
-            AbstractButton button = buttons.nextElement();
-            if (button.isSelected()) {
-                String buttonText = button.getText();
-                if (buttonText.equals("Bubble Sort")) {
+        Runnable threadVisual = () -> {
+            // Código a ser executado pela thread
+            System.out.println("Thread em execução!");
+
+        };
+
+        Runnable threadPap = () -> {
+            // Código a ser executado pela thread
+            System.out.println("Thread em execução!");
+
+            Enumeration<AbstractButton> buttons = grupo_combo_pap.getElements();
+            while (buttons.hasMoreElements()) {
+                AbstractButton button = buttons.nextElement();
+                if (button.isSelected()) {
+                    String buttonText = button.getText();
+
                     Thread bubblePapThread = new Thread(new BubbleSortThread(bubblePap));
                     bubblePapThread.setName("PapThreadBubble");
-                    bubblePapThread.start();
+                    Thread selectionPapThread = new Thread(new SelectionSortThread(selectionPap));
+                    selectionPapThread.setName("PapThreadSelection");
+                    Thread insertionPapThread = new Thread(new InsertionSortThread(insertionPap));
+                    insertionPapThread.setName("PapThreadInsertion");
+                    Thread quickPapThread = new Thread(new QuickSortThread(quickPap));
+                    quickPapThread.setName("PapThreadQuick");
 
-                    try {
-                        bubblePapThread.join();
-                    } catch (InterruptedException ex) {
-                        ex.printStackTrace();
-                    }
+                    if (buttonText.equals("Bubble Sort")) {
+                        bubblePapThread.start();
 
-                    String it = null, reg = null;
-                    for (int i = 0; i < bubblePap.registros.size(); i++) {
-                        reg = bubblePap.registros.get(i);
-                        it = String.valueOf(i);
+                        try {
+                            bubblePapThread.join();
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
 
-                        System.out.println(it + " " + reg);
+                        String it = null, reg = null;
+                        for (int i = 0; i < bubblePap.registros.size(); i++) {
+                            reg = bubblePap.registros.get(i);
+                            it = String.valueOf(i);
 
-                        modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
-                        modeloPapOrdenacao.addRow(new Object[]{it, reg});
+                            //System.out.println(it + " " + reg);
 
+                            modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
+                            modeloPapOrdenacao.addRow(new Object[]{it, reg});
+
+                        }
+                    } else if (buttonText.equals("Selection Sort")) {
+                        selectionPapThread.start();
+
+                        try {
+                            selectionPapThread.join();
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        String it = null, reg = null;
+                        for (int i = 0; i < selectionPap.registros.size(); i++) {
+                            reg = selectionPap.registros.get(i);
+                            it = String.valueOf(i);
+
+                            //System.out.println(it + " " + reg);
+
+                            modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
+                            modeloPapOrdenacao.addRow(new Object[]{it, reg});
+
+                        }
+                    } else if (buttonText.equals("Insertion Sort")) {
+                        selectionPapThread.start();
+
+                        try {
+                            selectionPapThread.join();
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        String it = null, reg = null;
+                        for (int i = 0; i < selectionPap.registros.size(); i++) {
+                            reg = selectionPap.registros.get(i);
+                            it = String.valueOf(i);
+
+                            //System.out.println(it + " " + reg);
+
+                            modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
+                            modeloPapOrdenacao.addRow(new Object[]{it, reg});
+
+                        }
+                    } else if (buttonText.equals("Quick Sort")) {
+                        quickPapThread.start();
+
+                        try {
+                            quickPapThread.join();
+                        } catch (InterruptedException ex) {
+                            ex.printStackTrace();
+                        }
+
+                        String it = null, reg = null;
+                        for (int i = 0; i < insertionPap.registros.size(); i++) {
+                            reg = insertionPap.registros.get(i);
+                            it = String.valueOf(i);
+
+                            //System.out.println(it + " " + reg);
+
+                            modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
+                            modeloPapOrdenacao.addRow(new Object[]{it, reg});
+
+                        }
                     }
                 }
+
             }
 
-        }        // TODO add your handling code here:
+        };
+
+        Thread VisualThread = new Thread(threadVisual);
+        VisualThread.setName("ThreadVisual");
+        VisualThread.start();
+
+        Thread PapThread = new Thread(threadPap);
+        PapThread.setName("ThreadPap");
+        PapThread.start();
+
+        try {
+            PapThread.join();
+            VisualThread.join();
+        } catch (InterruptedException ex) {
+
+        }
+
     }//GEN-LAST:event_botao_demonstrarActionPerformed
 
     /**
@@ -1255,9 +1357,9 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JButton botao_gerar;
     private javax.swing.JButton botao_limpaBusca;
     private javax.swing.JButton botao_limpaCria;
-    private javax.swing.JButton botao_limpaManIndex;
     private javax.swing.JButton botao_limpaPap;
     private javax.swing.JButton botao_limpaSort;
+    private javax.swing.JButton botao_limpaVisual;
     private javax.swing.JTextField campo_num;
     private javax.swing.JCheckBox check_bubble;
     private javax.swing.JCheckBox check_criaAVL;
@@ -1276,8 +1378,6 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel label_numElem;
     private javax.swing.JLabel label_numElem1;
@@ -1286,6 +1386,8 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JLabel label_numElem5;
     private javax.swing.JLabel label_numElem6;
     private javax.swing.JLabel label_numElem8;
+    private javax.swing.JPanel painel_tempoexec;
+    private javax.swing.JPanel painel_visual;
     private javax.swing.JRadioButton radio_bubble;
     private javax.swing.JRadioButton radio_insertion;
     private javax.swing.JRadioButton radio_lote;
@@ -1293,10 +1395,10 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JRadioButton radio_quick;
     private javax.swing.JRadioButton radio_selection;
     private javax.swing.JScrollPane scroll_busca;
-    private javax.swing.JScrollPane scroll_busca1;
+    private javax.swing.JScrollPane scroll_buscaPap;
     private javax.swing.JScrollPane scroll_cria;
     private javax.swing.JScrollPane scroll_sort;
-    private javax.swing.JScrollPane scroll_sort1;
+    private javax.swing.JScrollPane scroll_visual;
     private javax.swing.JSlider slider_velocidade;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JTable tabela_buscaArv;

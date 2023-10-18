@@ -380,7 +380,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="jPanel2">
+            <Container class="javax.swing.JPanel" name="painel_tempoexec">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Tempo de Execu&#xe7;&#xe3;o">
@@ -574,7 +574,7 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Quant&quot;, &quot;Tipo&quot;, &quot;Tempo&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelOrd = tabela_ordenacao.getColumnModel();&#xa;TableColumn coluna1O = columnModelOrd.getColumn(0);&#xa;coluna1O.setPreferredWidth(40);&#xa;&#xa;DefaultTableCellRenderer rightRendererO = new DefaultTableCellRenderer();&#xa;rightRendererO.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;TableColumn coluna3O = columnModelOrd.getColumn(2);&#xa;coluna3O.setCellRenderer(rightRendererO);;">
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelOrd = tabela_ordenacao.getColumnModel();&#xa;TableColumn coluna1O = columnModelOrd.getColumn(0);&#xa;coluna1O.setPreferredWidth(40);&#xa;&#xa;DefaultTableCellRenderer rightRendererO = new DefaultTableCellRenderer();&#xa;rightRendererO.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;&#xa;TableColumn coluna3O = columnModelOrd.getColumn(2);&#xa;coluna3O.setCellRenderer(rightRendererO);;">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
@@ -597,7 +597,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="painel_visual">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                   <JTabbedPaneConstraints tabName="Representa&#xe7;&#xe3;o Visual">
@@ -643,15 +643,15 @@
                               </Group>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="scroll_sort1" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
-                              <Component id="botao_limpaManIndex" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="scroll_visual" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="botao_limpaVisual" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="label_numElem2" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="label_numElem8" min="-2" max="-2" attributes="0"/>
                               <Component id="botao_limpaPap" min="-2" max="-2" attributes="0"/>
-                              <Component id="scroll_busca1" min="-2" pref="300" max="-2" attributes="0"/>
+                              <Component id="scroll_buscaPap" min="-2" pref="300" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       </Group>
@@ -667,8 +667,8 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="scroll_busca1" pref="0" max="32767" attributes="0"/>
-                              <Component id="scroll_sort1" pref="290" max="32767" attributes="0"/>
+                              <Component id="scroll_buscaPap" pref="0" max="32767" attributes="0"/>
+                              <Component id="scroll_visual" pref="290" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="radio_bubble" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -694,7 +694,7 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="botao_limpaManIndex" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botao_limpaVisual" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="botao_limpaPap" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
@@ -708,8 +708,11 @@
                     <Property name="text" type="java.lang.String" value="Manipula&#xe7;&#xe3;o de &#xed;ndices:"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="scroll_sort1">
+                <Container class="javax.swing.JScrollPane" name="scroll_visual">
                   <Properties>
+                    <Property name="rowHeaderView" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="default"/>
+                    </Property>
                     <Property name="viewportView" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
                       <ComponentRef name="null"/>
                     </Property>
@@ -746,15 +749,21 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="botao_limpaManIndex">
+                <Component class="javax.swing.JButton" name="botao_limpaVisual">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Limpar"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_limpaManIndexActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botao_limpaVisualActionPerformed"/>
                   </Events>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="scroll_busca1">
+                <Container class="javax.swing.JScrollPane" name="scroll_buscaPap">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
+                    <Property name="rowHeaderView" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                      <ComponentRef name="null"/>
+                    </Property>
+                  </Properties>
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -766,7 +775,8 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Itera&#xe7;&#xe3;o&quot;, &quot;Valores&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelPap = tabela_pap.getColumnModel();&#xa;TableColumn coluna1Pap = columnModelPap.getColumn(0);&#xa;&#xa;DefaultTableCellRenderer rendererPap = new DefaultTableCellRenderer();&#xa;rendererPap.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);&#xa;&#xa;TableColumn coluna2Pap = columnModelPap.getColumn(1);&#xa;coluna1Pap.setCellRenderer(rendererPap);&#xa;coluna2Pap.setCellRenderer(rendererPap);&#xa;coluna2Pap.setPreferredWidth(450);">
+                        <Property name="autoResizeMode" type="int" value="3"/>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelPap = tabela_pap.getColumnModel();&#xa;TableColumn coluna1Pap = columnModelPap.getColumn(0);&#xa;coluna1Pap.setPreferredWidth(60);&#xa;&#xa;DefaultTableCellRenderer rendererPap = new DefaultTableCellRenderer();&#xa;rendererPap.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);&#xa;&#xa;TableColumn coluna2Pap = columnModelPap.getColumn(1);&#xa;coluna1Pap.setCellRenderer(rendererPap);&#xa;coluna2Pap.setCellRenderer(rendererPap);&#xa;coluna2Pap.setPreferredWidth(450);">
                           <TableColumnModel selectionModel="0">
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>

@@ -80,74 +80,124 @@ public class Sort {
     public void ordenaSelection() {
         long inicioSort;
         long fimSort;
+        registros.clear();
 
-        inicioSort = System.nanoTime();
-        for (int o = 0; o < vetor.length; o++) {
-            double menor = vetor[o];
-            for (int i = o; i < vetor.length; i++) {
-                if (menor > vetor[i]) {
-                    menor = vetor[i]; //¹
-                    double r = vetor[o];
-                    vetor[o] = menor;
-                    vetor[i] = r;
+        if (registrar == true) {
+            for (int o = 0; o < vetor.length; o++) {
+                double menor = vetor[o];
+                for (int i = o; i < vetor.length; i++) {
+                    registraPasso();
+
+                    if (menor > vetor[i]) {
+                        menor = vetor[i];
+                        double r = vetor[o];
+                        vetor[o] = menor;
+                        vetor[i] = r;
+                    }
                 }
             }
+        } else {
+            inicioSort = System.nanoTime();
+            for (int o = 0; o < vetor.length; o++) {
+                double menor = vetor[o];
+                for (int i = o; i < vetor.length; i++) {
+                    if (menor > vetor[i]) {
+                        menor = vetor[i]; //¹
+                        double r = vetor[o];
+                        vetor[o] = menor;
+                        vetor[i] = r;
+                    }
+                }
+            }
+            fimSort = System.nanoTime();
+            double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
+
+            System.out.println("Sort: Ordenou Selection");
+            this.tempoExecucao = tempoSort;
         }
-        fimSort = System.nanoTime();
-        double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
-
-        System.out.println("Sort: Ordenou Selection");
-
         //System.out.print("Tempo total: " + tempoSort + "ms\n");
-        this.tempoExecucao = tempoSort;
     }
 
     //INSERTION SORT
     public void ordenaInsertion() {
         long inicioSort;
         long fimSort;
+        registros.clear();
 
-        inicioSort = System.nanoTime();
-        int j;
-        double n;
-        for (int i = 1; i < vetor.length; i++) {
-            n = vetor[i];
-            j = i - 1;
+        if (registrar == true) {
+            int j;
+            double n;
+            for (int i = 1; i < vetor.length; i++) {
+                registraPasso();
 
-            while (j >= 0 && vetor[j] > n) {
-                vetor[j + 1] = vetor[j];
-                j = j - 1;
+                n = vetor[i];
+                j = i - 1;
+                while (j >= 0 && vetor[j] > n) {
+                    vetor[j + 1] = vetor[j];
+                    j = j - 1;
+                }
+                vetor[j + 1] = n;
             }
-            vetor[j + 1] = n;
+        } else {
+            inicioSort = System.nanoTime();
+            int j;
+            double n;
+            for (int i = 1; i < vetor.length; i++) {
+                n = vetor[i];
+                j = i - 1;
+                while (j >= 0 && vetor[j] > n) {
+                    vetor[j + 1] = vetor[j];
+                    j = j - 1;
+                }
+                vetor[j + 1] = n;
+            }
+            fimSort = System.nanoTime();
+            double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
+            this.tempoExecucao = tempoSort;
+
         }
-        fimSort = System.nanoTime();
-        double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
 
         System.out.println("Sort: Ordenou Insertion");
 
         //System.out.print("Tempo total: " + tempoSort + "ms\n");
-        this.tempoExecucao = tempoSort;
     }
 
     //QUICK SORT
     public void ordenaQuick() {
         long inicioSort;
         long fimSort;
+        registros.clear();
 
-        inicioSort = System.nanoTime();
-        quickSort(this.vetor, 0, vetor.length - 1);
-        fimSort = System.nanoTime();
-        double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
+        if (registrar == true) {
+            quickSortReg(this.vetor, 0, vetor.length - 1);
+
+        } else {
+            inicioSort = System.nanoTime();
+            quickSort(this.vetor, 0, vetor.length - 1);
+            fimSort = System.nanoTime();
+            double tempoSort = (double) (fimSort - inicioSort) / 1_000_000;
+
+            this.tempoExecucao = tempoSort;
+
+        }
 
         System.out.println("Sort: Ordenou Quick");
 
         //System.out.print("Tempo total: " + tempoSort + "ms\n");
-        this.tempoExecucao = tempoSort;
-
     }
 
     private void quickSort(double[] vetor, int o, int fim) {
         if (o < fim) {
+            int p = separar(vetor, o, fim);
+            quickSort(vetor, o, p - 1);
+            quickSort(vetor, p + 1, fim);
+        }
+    }
+
+    private void quickSortReg(double[] vetor, int o, int fim) {
+        if (o < fim) {
+            registraPasso();
+
             int p = separar(vetor, o, fim);
             quickSort(vetor, o, p - 1);
             quickSort(vetor, p + 1, fim);
