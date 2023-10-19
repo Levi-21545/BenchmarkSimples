@@ -2,6 +2,7 @@ package estuturas_simples;
 
 import java.util.ArrayList;
 import java.util.List;
+import mypackage.Janela;
 
 public class Sort {
 
@@ -18,6 +19,10 @@ public class Sort {
 
     public double getTempoExecucao() {
         return this.tempoExecucao;
+    }
+
+    public double[] getVetor() {
+        return this.vetor;
     }
 
     public void setTempoExecucao(double tempoExec) {
@@ -76,6 +81,26 @@ public class Sort {
         this.tempoExecucao = tempoSort;
     }
 
+    public void ordenaBubbleAnim() {
+        for (int t = 0; t < vetor.length; t++) {
+            for (int i = 0; i < (vetor.length - 1); i++) {
+                Janela.atualizaVetorVisual(this);
+                try {
+                    Thread.sleep(Janela.getTempoAnim());
+                } catch (InterruptedException e) {
+                    // Trata exceções se ocorrerem durante a pausa
+                    e.printStackTrace();
+                }
+                if (vetor[i] > vetor[i + 1]) {
+                    double r = vetor[i];
+                    vetor[i] = vetor[i + 1];
+                    vetor[i + 1] = r;
+                }
+            }
+        }
+        System.out.println("Sort: Ordenou Bubble");
+    }
+
     //SELECTION SORT
     public void ordenaSelection() {
         long inicioSort;
@@ -116,6 +141,27 @@ public class Sort {
             this.tempoExecucao = tempoSort;
         }
         //System.out.print("Tempo total: " + tempoSort + "ms\n");
+    }
+
+    public void ordenaSelectionAnim() {
+        for (int o = 0; o < vetor.length; o++) {
+            double menor = vetor[o];
+            for (int i = o; i < vetor.length; i++) {
+                Janela.atualizaVetorVisual(this);
+                try {
+                    Thread.sleep(Janela.getTempoAnim());
+                } catch (InterruptedException e) {
+                    // Trata exceções se ocorrerem durante a pausa
+                    e.printStackTrace();
+                }
+                if (menor > vetor[i]) {
+                    menor = vetor[i];
+                    double r = vetor[o];
+                    vetor[o] = menor;
+                    vetor[i] = r;
+                }
+            }
+        }
     }
 
     //INSERTION SORT
@@ -162,6 +208,27 @@ public class Sort {
         //System.out.print("Tempo total: " + tempoSort + "ms\n");
     }
 
+    public void ordenaInsertionAnim() {
+        int j;
+        double n;
+        for (int i = 1; i < vetor.length; i++) {
+            Janela.atualizaVetorVisual(this);
+            try {
+                Thread.sleep(Janela.getTempoAnim());
+            } catch (InterruptedException e) {
+                // Trata exceções se ocorrerem durante a pausa
+                e.printStackTrace();
+            }
+            n = vetor[i];
+            j = i - 1;
+            while (j >= 0 && vetor[j] > n) {
+                vetor[j + 1] = vetor[j];
+                j = j - 1;
+            }
+            vetor[j + 1] = n;
+        }
+    }
+
     //QUICK SORT
     public void ordenaQuick() {
         long inicioSort;
@@ -194,13 +261,32 @@ public class Sort {
         }
     }
 
-    private void quickSortReg(double[] vetor, int o, int fim) {
-        if (o < fim) {
-            registraPasso();
+    public void ordenaQuickAnim() {
+        quickSortAnim(this.vetor, 0, vetor.length - 1);
+    }
 
+    private void quickSortAnim(double[] vetor, int o, int fim) {
+        Janela.atualizaVetorVisual(this);
+        try {
+            Thread.sleep(Janela.getTempoAnim());
+        } catch (InterruptedException e) {
+            // Trata exceções se ocorrerem durante a pausa
+            e.printStackTrace();
+        }
+        if (o < fim) {
             int p = separar(vetor, o, fim);
-            quickSort(vetor, o, p - 1);
-            quickSort(vetor, p + 1, fim);
+            quickSortAnim(vetor, o, p - 1);
+            quickSortAnim(vetor, p + 1, fim);
+        }
+    }
+
+    private void quickSortReg(double[] vetor, int o, int fim) {
+        registraPasso();
+
+        if (o < fim) {
+            int p = separar(vetor, o, fim);
+            quickSortReg(vetor, o, p - 1);
+            quickSortReg(vetor, p + 1, fim);
         }
     }
 

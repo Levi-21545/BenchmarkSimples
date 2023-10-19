@@ -53,7 +53,7 @@ public class Janela extends javax.swing.JFrame {
     DefaultTableModel modeloCriaArvore = null;
     DefaultTableModel modeloBusca = null;
     DefaultTableModel modeloPapOrdenacao = null;
-    DefaultTableModel modeloVisualOrdenacao = null;
+    static DefaultTableModel modeloVisualOrdenacao = null;
 
     Vetor vetor = null;
     Thread geraVetor = null;
@@ -68,10 +68,20 @@ public class Janela extends javax.swing.JFrame {
     Sort insertion = null;
     Sort quick = null;
 
+    static Sort bubbleVisual = null;
+    Sort selectionVisual = null;
+    Sort insertionVisual = null;
+    Sort quickVisual = null;
+
+    static int[] vetorSort = null;
+
     Sort bubblePap = null;
     Sort selectionPap = null;
     Sort insertionPap = null;
     Sort quickPap = null;
+
+    Thread ThreadPap = null;
+    Thread ThreadVisual = null;
 
     Busca busca = null;
     double valorBusca = 0;
@@ -124,7 +134,7 @@ public class Janela extends javax.swing.JFrame {
         painel_visual = new javax.swing.JPanel();
         label_numElem2 = new javax.swing.JLabel();
         scroll_visual = new javax.swing.JScrollPane();
-        tabela_visualOrdenacao = new javax.swing.JTable();
+        tabela_visual = new javax.swing.JTable();
         botao_limpaVisual = new javax.swing.JButton();
         scroll_buscaPap = new javax.swing.JScrollPane();
         tabela_pap = new javax.swing.JTable();
@@ -139,6 +149,7 @@ public class Janela extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         botao_demonstrar = new javax.swing.JButton();
+        botao_cancelaVisual = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -434,14 +445,20 @@ public class Janela extends javax.swing.JFrame {
 
         scroll_visual.setViewportView(null);
 
-        tabela_visualOrdenacao.setModel(new javax.swing.table.DefaultTableModel(
+        tabela_visual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
             },
             new String [] {
                 "Posição", "Valor"
             }
         ));
-        scroll_visual.setViewportView(tabela_visualOrdenacao);
+        scroll_visual.setViewportView(tabela_visual);
+        TableColumnModel columnModelVisual = tabela_visual.getColumnModel();
+        TableColumn coluna1Visual = columnModelVisual.getColumn(0);
+
+        DefaultTableCellRenderer rendererVisual = new DefaultTableCellRenderer();
+        rendererVisual.setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+        coluna1Visual.setCellRenderer(rendererVisual);
 
         botao_limpaVisual.setText("Limpar");
         botao_limpaVisual.addActionListener(new java.awt.event.ActionListener() {
@@ -516,6 +533,8 @@ public class Janela extends javax.swing.JFrame {
         });
 
         slider_velocidade.setMajorTickSpacing(5);
+        slider_velocidade.setMaximum(900);
+        slider_velocidade.setMinimum(50);
 
         jLabel2.setLabelFor(slider_velocidade);
         jLabel2.setText("Velocidade");
@@ -528,6 +547,13 @@ public class Janela extends javax.swing.JFrame {
         botao_demonstrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_demonstrarActionPerformed(evt);
+            }
+        });
+
+        botao_cancelaVisual.setText("Parar");
+        botao_cancelaVisual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_cancelaVisualActionPerformed(evt);
             }
         });
 
@@ -560,16 +586,19 @@ public class Janela extends javax.swing.JFrame {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(botao_demonstrar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)))
+                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(painel_visualLayout.createSequentialGroup()
+                        .addComponent(botao_limpaVisual)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botao_cancelaVisual))
+                    .addComponent(label_numElem2)
+                    .addComponent(scroll_visual, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scroll_visual, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botao_limpaVisual)
-                    .addComponent(label_numElem2))
-                .addGap(8, 8, 8)
-                .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_numElem8)
                     .addComponent(botao_limpaPap)
-                    .addComponent(scroll_buscaPap, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6))
+                    .addComponent(label_numElem8)
+                    .addComponent(scroll_buscaPap, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         painel_visualLayout.setVerticalGroup(
             painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -603,7 +632,8 @@ public class Janela extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(painel_visualLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botao_limpaVisual)
-                    .addComponent(botao_limpaPap))
+                    .addComponent(botao_limpaPap)
+                    .addComponent(botao_cancelaVisual))
                 .addGap(19, 19, 19))
         );
 
@@ -779,7 +809,6 @@ public class Janela extends javax.swing.JFrame {
 
                 double tempoExec;
                 String nome = null, tempo = null, quant = null;
-                
 
                 switch (sort.getName()) {
                     case "ThreadBubble":
@@ -1175,6 +1204,11 @@ public class Janela extends javax.swing.JFrame {
         insertionPap = new Sort(vetor);
         quickPap = new Sort(vetor);
 
+        bubbleVisual = new Sort(vetor);
+        selectionVisual = new Sort(vetor);
+        insertionVisual = new Sort(vetor);
+        quickVisual = new Sort(vetor);
+
         try {
             bubblePap.setRegistrar(true);
             selectionPap.setRegistrar(true);
@@ -1185,14 +1219,6 @@ public class Janela extends javax.swing.JFrame {
         }
 
         Runnable threadVisual = () -> {
-            // Código a ser executado pela thread
-            System.out.println("Thread em execução!");
-
-        };
-
-        Runnable threadPap = () -> {
-            // Código a ser executado pela thread
-            System.out.println("Thread em execução!");
 
             Enumeration<AbstractButton> buttons = grupo_combo_pap.getElements();
             while (buttons.hasMoreElements()) {
@@ -1200,14 +1226,47 @@ public class Janela extends javax.swing.JFrame {
                 if (button.isSelected()) {
                     String buttonText = button.getText();
 
+                    Thread bubbleVisualThread = new Thread(new BubbleSortThread(bubbleVisual));
+                    bubbleVisualThread.setName("ThreadBubbleVisual");
+                    Thread selectionVisualThread = new Thread(new SelectionSortThread(selectionVisual));
+                    selectionVisualThread.setName("ThreadSelectionVisual");
+                    Thread insertionVisualThread = new Thread(new InsertionSortThread(insertionVisual));
+                    insertionVisualThread.setName("ThreadInsertionVisual");
+                    Thread quickVisualThread = new Thread(new QuickSortThread(quickVisual));
+                    quickVisualThread.setName("ThreadQuickVisual");
+
+                    if (buttonText.equals("Bubble Sort")) {
+                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                        bubbleVisual.ordenaBubbleAnim();
+                    } else if (buttonText.equals("Selection Sort")) {
+                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                        selectionVisual.ordenaSelectionAnim();
+                    } else if (buttonText.equals("Insertion Sort")) {
+                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                        insertionVisual.ordenaInsertionAnim();
+                    } else if (buttonText.equals("Quick Sort")) {
+                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                        quickVisual.ordenaQuickAnim();
+                    }
+                }
+            }
+        };
+
+        Runnable threadPap = () -> {
+            Enumeration<AbstractButton> buttons = grupo_combo_pap.getElements();
+            while (buttons.hasMoreElements()) {
+                AbstractButton button = buttons.nextElement();
+                if (button.isSelected()) {
+                    String buttonText = button.getText();
+
                     Thread bubblePapThread = new Thread(new BubbleSortThread(bubblePap));
-                    bubblePapThread.setName("PapThreadBubble");
+                    bubblePapThread.setName("ThreadBubblePap");
                     Thread selectionPapThread = new Thread(new SelectionSortThread(selectionPap));
-                    selectionPapThread.setName("PapThreadSelection");
+                    selectionPapThread.setName("ThreadSelectionPap");
                     Thread insertionPapThread = new Thread(new InsertionSortThread(insertionPap));
-                    insertionPapThread.setName("PapThreadInsertion");
+                    insertionPapThread.setName("ThreadInsertionPap");
                     Thread quickPapThread = new Thread(new QuickSortThread(quickPap));
-                    quickPapThread.setName("PapThreadQuick");
+                    quickPapThread.setName("ThreadQuickPap");
 
                     if (buttonText.equals("Bubble Sort")) {
                         bubblePapThread.start();
@@ -1224,7 +1283,6 @@ public class Janela extends javax.swing.JFrame {
                             it = String.valueOf(i);
 
                             //System.out.println(it + " " + reg);
-
                             modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
                             modeloPapOrdenacao.addRow(new Object[]{it, reg});
 
@@ -1244,27 +1302,25 @@ public class Janela extends javax.swing.JFrame {
                             it = String.valueOf(i);
 
                             //System.out.println(it + " " + reg);
-
                             modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
                             modeloPapOrdenacao.addRow(new Object[]{it, reg});
 
                         }
                     } else if (buttonText.equals("Insertion Sort")) {
-                        selectionPapThread.start();
+                        insertionPapThread.start();
 
                         try {
-                            selectionPapThread.join();
+                            insertionPapThread.join();
                         } catch (InterruptedException ex) {
                             ex.printStackTrace();
                         }
 
                         String it = null, reg = null;
-                        for (int i = 0; i < selectionPap.registros.size(); i++) {
-                            reg = selectionPap.registros.get(i);
+                        for (int i = 0; i < insertionPap.registros.size(); i++) {
+                            reg = insertionPap.registros.get(i);
                             it = String.valueOf(i);
 
                             //System.out.println(it + " " + reg);
-
                             modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
                             modeloPapOrdenacao.addRow(new Object[]{it, reg});
 
@@ -1279,11 +1335,11 @@ public class Janela extends javax.swing.JFrame {
                         }
 
                         String it = null, reg = null;
-                        for (int i = 0; i < insertionPap.registros.size(); i++) {
-                            reg = insertionPap.registros.get(i);
+                        for (int i = 0; i < quickPap.registros.size(); i++) {
+                            reg = quickPap.registros.get(i);
                             it = String.valueOf(i);
 
-                            //System.out.println(it + " " + reg);
+                            System.out.println(it + " " + reg);
 
                             modeloPapOrdenacao = (DefaultTableModel) tabela_pap.getModel();
                             modeloPapOrdenacao.addRow(new Object[]{it, reg});
@@ -1291,27 +1347,30 @@ public class Janela extends javax.swing.JFrame {
                         }
                     }
                 }
-
             }
 
         };
 
-        Thread VisualThread = new Thread(threadVisual);
-        VisualThread.setName("ThreadVisual");
-        VisualThread.start();
+        ThreadVisual = new Thread(threadVisual);
+        ThreadVisual.setName("ThreadVisual");
+        ThreadVisual.start();
 
-        Thread PapThread = new Thread(threadPap);
-        PapThread.setName("ThreadPap");
-        PapThread.start();
+        ThreadPap = new Thread(threadPap);
+        ThreadPap.setName("ThreadPap");
+        ThreadPap.start();
 
-        try {
+        /*try {
             PapThread.join();
             VisualThread.join();
         } catch (InterruptedException ex) {
 
-        }
+        }*/
 
     }//GEN-LAST:event_botao_demonstrarActionPerformed
+
+    private void botao_cancelaVisualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_cancelaVisualActionPerformed
+        
+    }//GEN-LAST:event_botao_cancelaVisualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1353,6 +1412,7 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JProgressBar barraProgresso;
     private javax.swing.JButton botaoIniciar;
     private javax.swing.JButton botao_busca;
+    private javax.swing.JButton botao_cancelaVisual;
     private javax.swing.JButton botao_demonstrar;
     private javax.swing.JButton botao_gerar;
     private javax.swing.JButton botao_limpaBusca;
@@ -1399,13 +1459,13 @@ public class Janela extends javax.swing.JFrame {
     private javax.swing.JScrollPane scroll_cria;
     private javax.swing.JScrollPane scroll_sort;
     private javax.swing.JScrollPane scroll_visual;
-    private javax.swing.JSlider slider_velocidade;
+    private static javax.swing.JSlider slider_velocidade;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JTable tabela_buscaArv;
     private javax.swing.JTable tabela_criaArv;
     private javax.swing.JTable tabela_ordenacao;
     private javax.swing.JTable tabela_pap;
-    private javax.swing.JTable tabela_visualOrdenacao;
+    private javax.swing.JTable tabela_visual;
     // End of variables declaration//GEN-END:variables
 
     private void liberaOrdenas() {
@@ -1610,5 +1670,25 @@ public class Janela extends javax.swing.JFrame {
             this.valor = valor;
         }
 
+    }
+
+    static public void atualizaVetorVisual(Sort sort) {
+        modeloVisualOrdenacao.setRowCount(0);
+
+        vetorSort = new int[sort.getVetor().length];
+
+        for (int i = 0; i < vetorSort.length; i++) {
+            vetorSort[i] = (int) sort.getVetor()[i];
+        }
+
+        for (int i = 0; i < vetorSort.length; i++) {
+            modeloVisualOrdenacao.addRow(new Object[]{String.valueOf(i), String.valueOf(vetorSort[i])});
+        }
+    }
+    
+    static public int getTempoAnim(){
+        int tempo = 1000 - (slider_velocidade.getValue());
+        //System.out.println(tempo);
+        return tempo;
     }
 }
