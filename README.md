@@ -4,16 +4,22 @@ Projeto desenvolvido em conjunto com João Vicente Lazarotto e João Jacaboski p
 
 ## Resumo
 
-Trata-se de uma aplicação em Java, utilizando do paradigma POO, com o objetivo de testar algoritmos de ordenação, árvores binárias de busca e árvores balanceadas AVL.
+Este projeto tem como objetivo principal a implementação e visualização de diferentes algoritmos de ordenação em Java, árvores binárias de busca e árvores balanceadas AVL, proporcionando uma experiência interativa e educativa para estudantes e entusiastas de Ciência da Computação.
 
-Como resultado, é apresentado o tempo de execução de diferentes processos para cada algoritmo com uma quantidade *n* de elementos, assim como a representação visual das ordenações.
+## Conteúdo
 
-## Funcionalidades
+- **Algoritmos de Ordenação:** Bubble Sort, Selection Sort, Insertion Sort e Quick Sort;
+- **Árvores Binárias:** Árvore Binária de Busca e Árvore Balanceada AVL;
+- **Visualização Gráfica:** Interface gráfica interativa que demonstra visualmente cada etapa dos algoritmos de ordenação, como também os tempos de execução dos processos;
+- **Programação Concorrente:**  Orientação a Threads para monitoramento de execução;
 
-- **Algoritmos de Ordenação:** Bubble Sort, Selection Sort, Insertion Sort e Quick Sort.
-- **Visualização Gráfica:** Interface gráfica interativa que demonstra visualmente cada etapa dos algoritmos de ordenação.
-- **Controle de Velocidade:** Opção para ajustar a velocidade da animação.
-- **Árvores de Busca:** Implementação de árvores de busca para busca de elementos em um vetor.
+## Ferramentas / Dependências
+- JDK 18.0
+- Java Swing
+- FlatLaf Look and Feel
+- Maven
+- JConsole e plug-in TopThreads
+- VisualVM
 
 ## Como Executar o Projeto
 
@@ -29,10 +35,9 @@ cd BenchmarkSimples
 mvn clean package
 java -jar target/benchmark_simples.jar
 ```
-Certifique-se de ter o Java e o Maven instalados em sua máquina antes de executar os comandos acima.
 
 ## Contribuições
 
 Contribuições são bem-vindas! Se você encontrar problemas ou tiver sugestões para melhorias, sinta-se à vontade para abrir uma **issue** ou enviar um **pull request**.
 
-**Divirta-se explorando os algoritmos e aprendendo sobre ordenação!** 🚀
+**Divirta-se explorando as estruturas de dados!** 🚀
