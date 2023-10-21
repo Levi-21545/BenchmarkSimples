@@ -1,4 +1,4 @@
-package estuturas_simples;
+package main.java.estuturas_simples;
 
 public class Vetor {
 

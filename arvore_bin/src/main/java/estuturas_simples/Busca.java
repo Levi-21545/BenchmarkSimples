@@ -1,11 +1,11 @@
-package estuturas_simples;
+package main.java.estuturas_simples;
 
-import arvores.ArvoreAvl;
-import arvores.ArvoreAvlAlt;
-import arvores.ArvoreBinaria;
-import arvores.ArvoreBinariaAlt;
-import arvores.ArvoreBinariaAlt.NoArvBin;
-import arvores.ArvoreAvl.NoAvl;
+import main.java.arvores.ArvoreAvl;
+import main.java.arvores.ArvoreAvlAlt;
+import main.java.arvores.ArvoreBinaria;
+import main.java.arvores.ArvoreBinariaAlt;
+import main.java.arvores.ArvoreBinariaAlt.NoArvBin;
+import main.java.arvores.ArvoreAvl.NoAvl;
 
 public final class Busca {
 

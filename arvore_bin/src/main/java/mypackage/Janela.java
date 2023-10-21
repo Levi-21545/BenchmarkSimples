@@ -2,22 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package mypackage;
+package main.java.mypackage;
 
-import arvores.ArvoreAvl;
-import arvores.ArvoreAvlAlt;
-import arvores.ArvoreBinaria;
-import arvores.ArvoreBinariaAlt;
-import estuturas_simples.Busca;
-import estuturas_simples.Sort;
-import estuturas_simples.Vetor;
-import estuturas_simples.Cores;
-import java.awt.Color;
+import main.java.arvores.ArvoreAvl;
+import main.java.arvores.ArvoreAvlAlt;
+import main.java.arvores.ArvoreBinaria;
+import main.java.arvores.ArvoreBinariaAlt;
+import main.java.estuturas_simples.Busca;
+import main.java.estuturas_simples.Sort;
+import main.java.estuturas_simples.Vetor;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import javax.swing.AbstractButton;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 import javax.swing.table.DefaultTableCellRenderer;

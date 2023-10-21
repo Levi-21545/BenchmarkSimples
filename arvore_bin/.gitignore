@@ -1,4 +1,38 @@
-build/
-dist/
-nbproject/
-test/
+# Arquivos de compilação e logs
+/build/
+/dist/
+/nbproject/private/
+/nbbuild/
+/nbactions.xml
+/nb-configuration.xml
+/nb-ide-versioning.xml
+/*.log
+
+# Dependências e bibliotecas
+/lib/
+/libs/
+/target/
+
+# Outros arquivos e diretórios do NetBeans
+/nbproject/project.properties
+/nbproject/genfiles.properties
+/nbproject/build-impl.xml
+/nbproject/configs/
+/nbproject/private/
+/nbproject/ide-configurations/
+/nbproject/misc.xml
+/nbproject/modules.xml
+/nbproject/project.xml
+
+# Arquivos de configuração de sistema local (exemplo para Windows)
+/nbproject/private/private.xml
+/nbproject/private/private.properties
+
+# Eclipse
+/.classpath
+/.project
+/.settings/
+/*.iml
+
+# Arquivos de compilação do Maven
+/target/

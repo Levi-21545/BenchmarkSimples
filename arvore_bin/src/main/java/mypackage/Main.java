@@ -1,10 +1,8 @@
-package mypackage;
+package main.java.mypackage;
 
 import com.formdev.flatlaf.FlatLightLaf;
-import java.awt.Font;
 import java.util.Scanner;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 public class Main {
 

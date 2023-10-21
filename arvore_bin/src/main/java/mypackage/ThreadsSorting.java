@@ -1,8 +1,7 @@
-package mypackage;
+package main.java.mypackage;
 
-import estuturas_simples.Sort;
-import estuturas_simples.Vetor;
-import java.util.Arrays;
+import main.java.estuturas_simples.Sort;
+import main.java.estuturas_simples.Vetor;
 
 class geraVetorThread implements Runnable {
 

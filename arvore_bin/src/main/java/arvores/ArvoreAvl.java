@@ -1,4 +1,4 @@
-package arvores;
+package main.java.arvores;
 
 public class ArvoreAvl {
 

@@ -1,11 +1,9 @@
-package arvores;
+package main.java.arvores;
 
 /* Criado por: profa. Divani Barbosa Gavinier
    Curriculo Lattes: http://lattes.cnpq.br/8503400830635447
    divanibarbosa@gmail.com
  */
-import java.io.*;
-import java.util.*;
 
 public class ArvoreBinariaAlt {
 

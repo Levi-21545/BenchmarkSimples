@@ -1,18 +1,18 @@
-package mypackage;
+package main.java.mypackage;
 
-import arvores.ArvoreAvlAlt;
-import arvores.ArvoreBinaria;
-import arvores.ArvoreBinariaAlt;
-import arvores.ArvoreAvl;
-import estuturas_simples.Vetor;
-import estuturas_simples.Cores;
+import main.java.arvores.ArvoreAvlAlt;
+import main.java.arvores.ArvoreBinaria;
+import main.java.arvores.ArvoreBinariaAlt;
+import main.java.arvores.ArvoreAvl;
+import main.java.estuturas_simples.Vetor;
+import main.java.estuturas_simples.Cores;
 
 class criaArvBinThread implements Runnable {
 
-    estuturas_simples.Vetor vetor;
+    main.java.estuturas_simples.Vetor vetor;
     ArvoreBinaria arvoreBin;
 
-    public criaArvBinThread(ArvoreBinaria arvoreBin, estuturas_simples.Vetor vetor) {
+    public criaArvBinThread(ArvoreBinaria arvoreBin, main.java.estuturas_simples.Vetor vetor) {
         this.vetor = vetor;
         this.arvoreBin = arvoreBin;
     }

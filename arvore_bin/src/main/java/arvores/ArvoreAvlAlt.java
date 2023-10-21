@@ -1,4 +1,4 @@
-package arvores;
+package main.java.arvores;
 
 import java.util.ArrayList;
 

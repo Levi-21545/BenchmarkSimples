@@ -1,8 +1,8 @@
-package estuturas_simples;
+package main.java.estuturas_simples;
 
 import java.util.ArrayList;
 import java.util.List;
-import mypackage.Janela;
+import main.java.mypackage.Janela;
 
 public class Sort {
 
