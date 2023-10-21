@@ -7,6 +7,8 @@
 /nb-configuration.xml
 /nb-ide-versioning.xml
 /*.log
+/build.xml
+/dependency-reduced-pom.xml
 
 # Dependências e bibliotecas
 /lib/
