@@ -82,6 +82,7 @@ public class Janela extends javax.swing.JFrame {
 
     Thread ThreadPap = null;
     Thread ThreadVisual = null;
+    volatile boolean threadVisualInterrompida = false;
 
     Busca busca = null;
     double valorBusca = 0;
@@ -1218,6 +1219,8 @@ public class Janela extends javax.swing.JFrame {
             return;
         }
 
+        threadVisualInterrompida = false;
+
         Runnable threadVisual = () -> {
 
             Enumeration<AbstractButton> buttons = grupo_combo_pap.getElements();
@@ -1226,28 +1229,22 @@ public class Janela extends javax.swing.JFrame {
                 if (button.isSelected()) {
                     String buttonText = button.getText();
 
-                    Thread bubbleVisualThread = new Thread(new BubbleSortThread(bubbleVisual));
-                    bubbleVisualThread.setName("ThreadBubbleVisual");
-                    Thread selectionVisualThread = new Thread(new SelectionSortThread(selectionVisual));
-                    selectionVisualThread.setName("ThreadSelectionVisual");
-                    Thread insertionVisualThread = new Thread(new InsertionSortThread(insertionVisual));
-                    insertionVisualThread.setName("ThreadInsertionVisual");
-                    Thread quickVisualThread = new Thread(new QuickSortThread(quickVisual));
-                    quickVisualThread.setName("ThreadQuickVisual");
+                    //while (!threadVisualInterrompida) {
+                        if (buttonText.equals("Bubble Sort")) {
+                            modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                            bubbleVisual.ordenaBubbleAnim();
+                        } else if (buttonText.equals("Selection Sort")) {
+                            modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                            selectionVisual.ordenaSelectionAnim();
+                        } else if (buttonText.equals("Insertion Sort")) {
+                            modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                            insertionVisual.ordenaInsertionAnim();
+                        } else if (buttonText.equals("Quick Sort")) {
+                            modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
+                            quickVisual.ordenaQuickAnim();
+                        }
+                    //}
 
-                    if (buttonText.equals("Bubble Sort")) {
-                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
-                        bubbleVisual.ordenaBubbleAnim();
-                    } else if (buttonText.equals("Selection Sort")) {
-                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
-                        selectionVisual.ordenaSelectionAnim();
-                    } else if (buttonText.equals("Insertion Sort")) {
-                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
-                        insertionVisual.ordenaInsertionAnim();
-                    } else if (buttonText.equals("Quick Sort")) {
-                        modeloVisualOrdenacao = (DefaultTableModel) tabela_visual.getModel();
-                        quickVisual.ordenaQuickAnim();
-                    }
                 }
             }
         };
@@ -1369,7 +1366,7 @@ public class Janela extends javax.swing.JFrame {
     }//GEN-LAST:event_botao_demonstrarActionPerformed
 
     private void botao_cancelaVisualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_cancelaVisualActionPerformed
-        
+        threadVisualInterrompida = true;
     }//GEN-LAST:event_botao_cancelaVisualActionPerformed
 
     /**
@@ -1685,8 +1682,8 @@ public class Janela extends javax.swing.JFrame {
             modeloVisualOrdenacao.addRow(new Object[]{String.valueOf(i), String.valueOf(vetorSort[i])});
         }
     }
-    
-    static public int getTempoAnim(){
+
+    static public int getTempoAnim() {
         int tempo = 1000 - (slider_velocidade.getValue());
         //System.out.println(tempo);
         return tempo;

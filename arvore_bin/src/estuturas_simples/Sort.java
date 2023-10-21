@@ -266,14 +266,15 @@ public class Sort {
     }
 
     private void quickSortAnim(double[] vetor, int o, int fim) {
-        Janela.atualizaVetorVisual(this);
-        try {
-            Thread.sleep(Janela.getTempoAnim());
-        } catch (InterruptedException e) {
-            // Trata exceções se ocorrerem durante a pausa
-            e.printStackTrace();
-        }
+
         if (o < fim) {
+            Janela.atualizaVetorVisual(this);
+            try {
+                Thread.sleep(Janela.getTempoAnim());
+            } catch (InterruptedException e) {
+                // Trata exceções se ocorrerem durante a pausa
+                e.printStackTrace();
+            }
             int p = separar(vetor, o, fim);
             quickSortAnim(vetor, o, p - 1);
             quickSortAnim(vetor, p + 1, fim);
