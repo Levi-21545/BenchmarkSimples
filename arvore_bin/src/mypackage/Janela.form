@@ -283,7 +283,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_criaAVLAlt">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Balanceada AVL (Autor Desconhecido)"/>
+            <Property name="text" type="java.lang.String" value="Balanceada AVL (Avilar)"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -292,7 +292,7 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="check_criaBinAlt">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Bin&#xe1;ria (Autor Desconhecido)"/>
+            <Property name="text" type="java.lang.String" value="Bin&#xe1;ria (Barbosa)"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
@@ -469,20 +469,7 @@
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                           <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;    },&#xa;    new String [] {&#xa;        &quot;Quant&quot;, &quot;Tipo&quot;, &quot;Tempo&quot;&#xa;    }&#xa;)" type="code"/>
                         </Property>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor" postCode="TableColumnModel columnModelArv = tabela_criaArv.getColumnModel();&#xa;TableColumn coluna1A = columnModelArv.getColumn(0);&#xa;coluna1A.setPreferredWidth(50);&#xa;&#xa;DefaultTableCellRenderer rightRendererA = new DefaultTableCellRenderer();&#xa;rightRendererA.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;TableColumn coluna3A = columnModelArv.getColumn(2);&#xa;coluna3A.setCellRenderer(rightRendererA);;">
-                          <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title value="Title 1"/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title value="Title 2"/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                          </TableColumnModel>
-                        </Property>
+                        <Property name="columnModel" postCode="TableColumnModel columnModelArv = tabela_criaArv.getColumnModel();&#xa;TableColumn coluna1A = columnModelArv.getColumn(0);&#xa;coluna1A.setPreferredWidth(50);&#xa;&#xa;DefaultTableCellRenderer rightRendererA = new DefaultTableCellRenderer();&#xa;rightRendererA.setHorizontalAlignment(DefaultTableCellRenderer.RIGHT);&#xa;&#xa;TableColumn coluna3A = columnModelArv.getColumn(2);&#xa;coluna3A.setCellRenderer(rightRendererA);;"/>
                         <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>

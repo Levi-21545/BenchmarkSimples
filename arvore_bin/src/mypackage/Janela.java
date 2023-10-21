@@ -235,7 +235,7 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        check_criaAVLAlt.setText("Balanceada AVL (Autor Desconhecido)");
+        check_criaAVLAlt.setText("Balanceada AVL (Avilar)");
         check_criaAVLAlt.setEnabled(false);
         check_criaAVLAlt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,7 +243,7 @@ public class Janela extends javax.swing.JFrame {
             }
         });
 
-        check_criaBinAlt.setText("Binária (Autor Desconhecido)");
+        check_criaBinAlt.setText("Binária (Barbosa)");
         check_criaBinAlt.setEnabled(false);
         check_criaBinAlt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -314,10 +314,6 @@ public class Janela extends javax.swing.JFrame {
             }
         ));
         scroll_cria.setViewportView(tabela_criaArv);
-        if (tabela_criaArv.getColumnModel().getColumnCount() > 0) {
-            tabela_criaArv.getColumnModel().getColumn(0).setHeaderValue("Title 1");
-            tabela_criaArv.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-        }
         TableColumnModel columnModelArv = tabela_criaArv.getColumnModel();
         TableColumn coluna1A = columnModelArv.getColumn(0);
         coluna1A.setPreferredWidth(50);
