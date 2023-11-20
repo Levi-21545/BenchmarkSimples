@@ -27,7 +27,7 @@ Para executar o projeto localmente, siga os passos abaixo:
 
 1. **Clonar o Repositório:**
 ```
-git clone https://github.com/seu-usuario/projeto-integrador-2.git
+git clone https://github.com/Levi-21545/BenchmarkSimples
 ```
 2. **Compilar e Executar o Projeto:**
 ```
